@@ -15,6 +15,49 @@ namespace CW2_W1830820
         public EditTransactionForm()
         {
             InitializeComponent();
+           TransactionModel transactionModel = new TransactionModel();
+
+            if (transactionModel.Type == 1)
+            {
+                this.radioBtnExpense.Checked = true;
+            }
+            else if (transactionModel.Type == 2)
+            {
+                this.radioBtnIncome.Checked = true;
+            }
+
+
+            this.dateTimePicker.Value = transactionModel.Date;
+            this.comboBoxContact.Text = transactionModel.Contact;
+            this.textBoxAmount.Text = transactionModel.Amount.ToString();
+        }
+
+        private void EditTransaction(object sender, EventArgs e)
+        {
+
+            int typeIndex = 1;
+
+            if (this.radioBtnExpense.Checked == true)
+            {
+                typeIndex = 1;
+            }
+            else if (this.radioBtnIncome.Checked == true)
+            {
+                typeIndex = 2;
+            }
+
+            this.TransactionManager(this.dateTimePicker.Value, typeIndex, this.comboBoxContact.Text, double.Parse(this.textBoxAmount.Text));
+        }
+
+
+        private void TransactionManager(DateTime date, int type, String contact, double amount)
+        {
+            TransactionModel transactionModel = new TransactionModel();
+            transactionModel.Date = date;
+            transactionModel.Type = type;
+            transactionModel.Contact = contact;
+            transactionModel.Amount = amount;
+
         }
     }
 }

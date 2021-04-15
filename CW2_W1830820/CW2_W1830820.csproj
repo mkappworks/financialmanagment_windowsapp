@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContactModel.cs" />
     <Compile Include="EditContactForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +103,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TransactionModel.cs" />
     <Compile Include="ViewContactForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -37,7 +37,7 @@ namespace CW2_W1830820
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxAmount = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBoxContact = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
@@ -91,6 +91,7 @@ namespace CW2_W1830820
             this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.SaveTransaction);
             // 
             // label2
             // 
@@ -129,12 +130,12 @@ namespace CW2_W1830820
             this.label3.TabIndex = 10;
             this.label3.Text = "Amount";
             // 
-            // dateTimePicker1
+            // dateTimePicker
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(115, 35);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 12;
+            this.dateTimePicker.Location = new System.Drawing.Point(115, 35);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker.TabIndex = 12;
             // 
             // label4
             // 
@@ -161,7 +162,7 @@ namespace CW2_W1830820
             this.ClientSize = new System.Drawing.Size(360, 312);
             this.Controls.Add(this.comboBoxContact);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dateTimePicker);
             this.Controls.Add(this.textBoxAmount);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox1);
@@ -187,7 +188,7 @@ namespace CW2_W1830820
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxAmount;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBoxContact;
     }

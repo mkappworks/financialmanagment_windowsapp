@@ -94,6 +94,7 @@ namespace CW2_W1830820
             this.btnEdit.TabIndex = 12;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Click += new System.EventHandler(this.EditContact);
             // 
             // label2
             // 

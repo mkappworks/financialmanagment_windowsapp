@@ -32,11 +32,11 @@ namespace CW2_W1830820
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textName = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.radioBtnPayer = new System.Windows.Forms.RadioButton();
             this.radioBtnPayee = new System.Windows.Forms.RadioButton();
-            this.textName = new System.Windows.Forms.TextBox();
-            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -75,22 +75,29 @@ namespace CW2_W1830820
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.SaveContact);
             // 
-            // groupBox1
+            // textName
             // 
-            this.groupBox1.Controls.Add(this.radioBtnPayee);
-            this.groupBox1.Controls.Add(this.radioBtnPayer);
-            this.groupBox1.Location = new System.Drawing.Point(110, 24);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(191, 46);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
+            this.textName.Location = new System.Drawing.Point(110, 88);
+            this.textName.Name = "textName";
+            this.textName.Size = new System.Drawing.Size(191, 20);
+            this.textName.TabIndex = 4;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.radioBtnPayee);
+            this.groupBox2.Controls.Add(this.radioBtnPayer);
+            this.groupBox2.Location = new System.Drawing.Point(110, 21);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(207, 49);
+            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabStop = false;
             // 
             // radioBtnPayer
             // 
             this.radioBtnPayer.AutoSize = true;
-            this.radioBtnPayer.Checked = true;
-            this.radioBtnPayer.Location = new System.Drawing.Point(22, 14);
+            this.radioBtnPayer.Location = new System.Drawing.Point(17, 19);
             this.radioBtnPayer.Name = "radioBtnPayer";
             this.radioBtnPayer.Size = new System.Drawing.Size(52, 17);
             this.radioBtnPayer.TabIndex = 0;
@@ -101,32 +108,26 @@ namespace CW2_W1830820
             // radioBtnPayee
             // 
             this.radioBtnPayee.AutoSize = true;
-            this.radioBtnPayee.Location = new System.Drawing.Point(113, 14);
+            this.radioBtnPayee.Location = new System.Drawing.Point(113, 19);
             this.radioBtnPayee.Name = "radioBtnPayee";
             this.radioBtnPayee.Size = new System.Drawing.Size(55, 17);
             this.radioBtnPayee.TabIndex = 1;
+            this.radioBtnPayee.TabStop = true;
             this.radioBtnPayee.Text = "Payee";
             this.radioBtnPayee.UseVisualStyleBackColor = true;
             // 
-            // textName
-            // 
-            this.textName.Location = new System.Drawing.Point(110, 88);
-            this.textName.Name = "textName";
-            this.textName.Size = new System.Drawing.Size(191, 20);
-            this.textName.TabIndex = 4;
-            // 
             // InputContactForm
             // 
-            this.ClientSize = new System.Drawing.Size(380, 250);
+            this.ClientSize = new System.Drawing.Size(369, 245);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.textName);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "InputContactForm";
             this.Text = "Input Contact Form";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -140,9 +141,9 @@ namespace CW2_W1830820
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox textName;
+        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RadioButton radioBtnPayee;
         private System.Windows.Forms.RadioButton radioBtnPayer;
-        private System.Windows.Forms.TextBox textName;
     }
 }
