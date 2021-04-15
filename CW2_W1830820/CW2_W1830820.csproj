@@ -142,6 +142,9 @@
     <EmbeddedResource Include="EditTransactionForm.resx">
       <DependentUpon>EditTransactionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GenerateTransactionReportForm.resx">
+      <DependentUpon>GenerateTransactionReportForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InputContactForm.resx">
       <DependentUpon>InputContactForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -154,6 +157,9 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PredictFinancialStatusForm.resx">
+      <DependentUpon>PredictFinancialStatusForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -163,6 +169,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ViewContactForm.resx">
+      <DependentUpon>ViewContactForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewEventForm.resx">
+      <DependentUpon>ViewEventForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewTransactionForm.resx">
+      <DependentUpon>ViewTransactionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
