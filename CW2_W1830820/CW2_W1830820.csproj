@@ -103,6 +103,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transaction.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Transaction.xsd</DependentUpon>
+    </Compile>
     <Compile Include="TransactionModel.cs" />
     <Compile Include="ViewContactForm.cs">
       <SubType>Form</SubType>
@@ -167,6 +172,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Transaction.xsc">
+      <DependentUpon>Transaction.xsd</DependentUpon>
+    </None>
+    <None Include="Transaction.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Transaction.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Transaction.xss">
+      <DependentUpon>Transaction.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
