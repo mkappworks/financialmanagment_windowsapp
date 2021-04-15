@@ -126,6 +126,9 @@
     <Compile Include="ViewWeeklyEventTransactionForm.Designer.cs">
       <DependentUpon>ViewWeeklyEventTransactionForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="EditContactForm.resx">
+      <DependentUpon>EditContactForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditEventForm.resx">
       <DependentUpon>EditEventForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -134,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InputContactForm.resx">
       <DependentUpon>InputContactForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputEventForm.resx">
+      <DependentUpon>InputEventForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputTransactionForm.resx">
       <DependentUpon>InputTransactionForm.cs</DependentUpon>
