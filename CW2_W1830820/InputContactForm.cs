@@ -17,5 +17,9 @@ namespace CW2_W1830820
             InitializeComponent();
         }
 
+        private void SaveContact(object sender, EventArgs e)
+        {
+
+        }
     }
 }

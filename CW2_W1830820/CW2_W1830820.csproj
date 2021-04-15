@@ -126,6 +126,9 @@
     <Compile Include="ViewWeeklyEventTransactionForm.Designer.cs">
       <DependentUpon>ViewWeeklyEventTransactionForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="EditEventForm.resx">
+      <DependentUpon>EditEventForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InputContactForm.resx">
       <DependentUpon>InputContactForm.cs</DependentUpon>
     </EmbeddedResource>
