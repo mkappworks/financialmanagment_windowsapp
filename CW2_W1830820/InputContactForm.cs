@@ -23,6 +23,8 @@ namespace CW2_W1830820
             InitializeComponent();
 
             this.radioBtnPayer.Checked = true;
+
+
         }
 
         private void SaveContact(object sender, EventArgs e)
