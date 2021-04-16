@@ -83,46 +83,6 @@ namespace CW2_W1830820
             this.Close();
 
         }
-        /*
-        private void XmlWrite(TransactionModel transactionModel)
-        {
-            String workingDir = Directory.GetCurrentDirectory();
-            // Create a new file in the working directory
-
-
-            XmlTextWriter textWriter = new XmlTextWriter("transaction.xml", null);
-            // Opens the document
-            textWriter.WriteStartDocument();
-
-            textWriter.WriteComment("Transaction XML"); 
-        
-
-            // Write first element
-            textWriter.WriteStartElement("Transaction");
-            // Write next element
-            textWriter.WriteStartElement("Date", "");
-            textWriter.WriteString(transactionModel.Date.ToString());
-            textWriter.WriteEndElement(); 
-
-            textWriter.WriteStartElement("Type",""); 
-            textWriter.WriteString(transactionModel.Type.ToString()); 
-            textWriter.WriteEndElement();
-
-            textWriter.WriteStartElement("Contact", "");
-            textWriter.WriteString(transactionModel.Contact.ToString());
-            textWriter.WriteEndElement();
-
-            textWriter.WriteStartElement("Amount", "");
-            textWriter.WriteString(transactionModel.Amount.ToString());
-            textWriter.WriteEndElement();
- 
-            //End the document
-            textWriter.WriteEndDocument();
-            // close writer
-            textWriter.Close();
-
-         
-        }
-        */
+  
     }
 }
