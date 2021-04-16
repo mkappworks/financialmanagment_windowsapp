@@ -56,6 +56,7 @@
     <Compile Include="Contact.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ContactDetails.cs" />
     <Compile Include="ContactModel.cs" />
     <Compile Include="DatabaseModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -98,6 +99,7 @@
     <Compile Include="Event.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EventDetails.cs" />
     <Compile Include="EventModel.cs" />
     <Compile Include="GenerateTransactionReportForm.cs">
       <SubType>Form</SubType>
@@ -140,6 +142,7 @@
     <Compile Include="Transaction.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TransactionDetails.cs" />
     <Compile Include="TransactionModel.cs" />
     <Compile Include="ViewContactForm.cs">
       <SubType>Form</SubType>

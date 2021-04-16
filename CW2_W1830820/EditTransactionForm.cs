@@ -15,7 +15,7 @@ namespace CW2_W1830820
         public EditTransactionForm()
         {
             InitializeComponent();
-           TransactionModel transactionModel = new TransactionModel();
+           TransactionDetails transactionModel = new TransactionDetails();
 
             if (transactionModel.Type == 1)
             {
@@ -52,7 +52,7 @@ namespace CW2_W1830820
 
         private void TransactionManager(DateTime date, int type, String contact, double amount)
         {
-            TransactionModel transactionModel = new TransactionModel();
+            TransactionDetails transactionModel = new TransactionDetails();
             transactionModel.Date = date;
             transactionModel.Type = type;
             transactionModel.Contact = contact;

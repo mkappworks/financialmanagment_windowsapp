@@ -15,7 +15,7 @@ namespace CW2_W1830820
         public EditContactForm()
         {
             InitializeComponent();
-            ContactModel contactModel = new ContactModel();
+            ContactDetails contactModel = new ContactDetails();
 
             if (contactModel.Type == 1)
             {
@@ -52,7 +52,7 @@ namespace CW2_W1830820
 
         private void ContactManager(int type, String name)
         {
-            ContactModel contactModel = new ContactModel();
+            ContactDetails contactModel = new ContactDetails();
             contactModel.Name = name;
             contactModel.Type = type;
         }

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace CW2_W1830820
 {
-    class EventModel
+    public class ContactDetails
     {
-    }
+       public int Type { get; set; }
+       public string Name { get; set; }
+        
+}
 }

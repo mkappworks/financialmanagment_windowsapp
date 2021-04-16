@@ -47,7 +47,7 @@ namespace CW2_W1830820
 
         private void TransactionManager(DateTime date, int type, String contact, double amount)
         {
-            TransactionModel transactionModel = new TransactionModel();
+            TransactionDetails transactionModel = new TransactionDetails();
             transactionModel.Date = date;
             transactionModel.Type = type;
             transactionModel.Contact = contact;
@@ -57,11 +57,11 @@ namespace CW2_W1830820
             Console.WriteLine(transactionModel.Amount);
             Console.WriteLine(transactionModel.Contact);
 
-         this.DBWrite(transactionModel);
+            this.DBWrite(transactionModel);
 
         }
 
-        private void DBWrite(TransactionModel transactionModel)
+        private void DBWrite(TransactionDetails transactionModel)
         {
             DBManager.TransactionHeaderRow row = this.dbManager.TransactionHeader.NewTransactionHeaderRow();
 
@@ -73,12 +73,26 @@ namespace CW2_W1830820
             this.dbManager.TransactionHeader.AddTransactionHeaderRow(row);
             this.dbManager.AcceptChanges();
 
-            this.dbManager.WriteXml(@"data.xml");
+            this.dbManager.WriteXml(@"transactiondata.xml");
 
-            Console.WriteLine(row.Amount);
-            Console.WriteLine(row);
+          
+            Transaction transaction = new Transaction();
+            Contact contact = new Contact();
 
-           // this.dbManager.ReadXml(@"data.xml");
+            transaction.Date = row.Date;
+            transaction.Type = row.Type;
+            transaction.ContactId = row.FK_ContactNo;
+            transaction.Amount = row.Amount;
+
+            //transaction.Contact.Add()
+
+            // this.dbManager.ReadXml(@"data.xml");
+
+            MyDatabaseFileEntities db = new MyDatabaseFileEntities();
+          
+
+            db.Transactions.Add(transaction);
+            db.SaveChanges();
 
             this.Close();
 
