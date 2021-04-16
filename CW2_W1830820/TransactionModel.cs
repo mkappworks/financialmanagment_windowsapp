@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CW2_W1830820
 {
-    class TransactionModel
+    public class TransactionModel
     {
         public DateTime Date { get; set; }
         public int Type { get; set; }

@@ -15,6 +15,9 @@ namespace CW2_W1830820
 {
     public partial class InputTransactionForm : Form
     {
+
+        private DBManager dbManager = new DBManager();
+
         public InputTransactionForm()
         {
             InitializeComponent();
@@ -38,10 +41,9 @@ namespace CW2_W1830820
             this.comboBoxContact.Text = "Sam";
 
             this.TransactionManager(this.dateTimePicker.Value, typeIndex, this.comboBoxContact.Text , double.Parse( this.textBoxAmount.Text));
-
-            
-
         }
+
+        
 
         private void TransactionManager(DateTime date, int type, String contact, double amount)
         {
@@ -53,12 +55,35 @@ namespace CW2_W1830820
 
             Console.WriteLine(transactionModel.Date);
             Console.WriteLine(transactionModel.Amount);
+            Console.WriteLine(transactionModel.Contact);
 
-            this.XmlWrite(transactionModel);
+         this.DBWrite(transactionModel);
 
         }
 
+        private void DBWrite(TransactionModel transactionModel)
+        {
+            DBManager.TransactionHeaderRow row = this.dbManager.TransactionHeader.NewTransactionHeaderRow();
 
+            row.Date = transactionModel.Date;
+            row.Type = transactionModel.Type;
+            row.FK_ContactNo = 1;
+            row.Amount = transactionModel.Amount;
+
+            this.dbManager.TransactionHeader.AddTransactionHeaderRow(row);
+            this.dbManager.AcceptChanges();
+
+            this.dbManager.WriteXml(@"data.xml");
+
+            Console.WriteLine(row.Amount);
+            Console.WriteLine(row);
+
+           // this.dbManager.ReadXml(@"data.xml");
+
+            this.Close();
+
+        }
+        /*
         private void XmlWrite(TransactionModel transactionModel)
         {
             String workingDir = Directory.GetCurrentDirectory();
@@ -92,11 +117,12 @@ namespace CW2_W1830820
             textWriter.WriteEndElement();
  
             //End the document
-           textWriter.WriteEndDocument();
+            textWriter.WriteEndDocument();
             // close writer
             textWriter.Close();
 
          
         }
+        */
     }
 }

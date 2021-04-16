@@ -47,6 +47,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContactModel.cs" />
+    <Compile Include="DBManager.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBManager.xsd</DependentUpon>
+    </Compile>
     <Compile Include="EditContactForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +70,7 @@
     <Compile Include="EditTransactionForm.Designer.cs">
       <DependentUpon>EditTransactionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EventModel.cs" />
     <Compile Include="GenerateTransactionReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,11 +109,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Transaction.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Transaction.xsd</DependentUpon>
-    </Compile>
     <Compile Include="TransactionModel.cs" />
     <Compile Include="ViewContactForm.cs">
       <SubType>Form</SubType>
@@ -178,6 +179,17 @@
     <EmbeddedResource Include="ViewTransactionForm.resx">
       <DependentUpon>ViewTransactionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="DBManager.xsc">
+      <DependentUpon>DBManager.xsd</DependentUpon>
+    </None>
+    <None Include="DBManager.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DBManager.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DBManager.xss">
+      <DependentUpon>DBManager.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -187,17 +199,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Transaction.xsc">
-      <DependentUpon>Transaction.xsd</DependentUpon>
-    </None>
-    <None Include="Transaction.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Transaction.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Transaction.xss">
-      <DependentUpon>Transaction.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

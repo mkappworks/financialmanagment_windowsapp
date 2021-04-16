@@ -31,14 +31,12 @@ namespace CW2_W1830820
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.transactionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameText = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.transaction = new CW2_W1830820.Transaction();
-            this.transactionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transaction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,7 +47,7 @@ namespace CW2_W1830820
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Type,
-            this.Name,
+            this.NameText,
             this.Edit,
             this.Delete});
             this.dataGridView1.DataSource = this.transactionBindingSource;
@@ -63,10 +61,10 @@ namespace CW2_W1830820
             this.Type.HeaderText = "Type";
             this.Type.Name = "Type";
             // 
-            // Name
+            // NameText
             // 
-            this.Name.HeaderText = "Name";
-            this.Name.Name = "Name";
+            this.NameText.HeaderText = "Name";
+            this.NameText.Name = "NameText";
             // 
             // Edit
             // 
@@ -78,16 +76,6 @@ namespace CW2_W1830820
             this.Delete.HeaderText = "Delete";
             this.Delete.Name = "Delete";
             // 
-            // transaction
-            // 
-            this.transaction.DataSetName = "Transaction";
-            this.transaction.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // transactionBindingSource
-            // 
-            this.transactionBindingSource.DataSource = this.transaction;
-            this.transactionBindingSource.Position = 0;
-            // 
             // ViewContactForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -97,7 +85,6 @@ namespace CW2_W1830820
             this.Name = "ViewContactForm";
             this.Text = "ViewContactForm";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transaction)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -106,11 +93,10 @@ namespace CW2_W1830820
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.BindingSource transactionBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NameText;
         private System.Windows.Forms.DataGridViewButtonColumn Edit;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
-        private System.Windows.Forms.BindingSource transactionBindingSource;
-        private Transaction transaction;
     }
 }

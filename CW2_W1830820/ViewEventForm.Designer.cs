@@ -37,10 +37,10 @@ namespace CW2_W1830820
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.transaction = new CW2_W1830820.Transaction();
+        
             this.transactionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transaction)).BeginInit();
+     
             ((System.ComponentModel.ISupportInitialize)(this.transactionBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,12 +94,11 @@ namespace CW2_W1830820
             // 
             // transaction
             // 
-            this.transaction.DataSetName = "Transaction";
-            this.transaction.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+           
             // 
             // transactionBindingSource
             // 
-            this.transactionBindingSource.DataSource = this.transaction;
+         
             this.transactionBindingSource.Position = 0;
             // 
             // ViewEventForm
@@ -111,7 +110,7 @@ namespace CW2_W1830820
             this.Name = "ViewEventForm";
             this.Text = "ViewEventForm";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transaction)).EndInit();
+         
             ((System.ComponentModel.ISupportInitialize)(this.transactionBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -127,6 +126,6 @@ namespace CW2_W1830820
         private System.Windows.Forms.DataGridViewButtonColumn Edit;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
         private System.Windows.Forms.BindingSource transactionBindingSource;
-        private Transaction transaction;
+ 
     }
 }
