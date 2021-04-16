@@ -11,7 +11,59 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MyDatabaseFileModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="MyDatabaseFileEntities" annotation:LazyLoadingEnabled="true" />
+        <EntityContainer Name="MyDatabaseFileEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Transactions" EntityType="MyDatabaseFileModel.Transaction" />
+          <EntitySet Name="Contacts" EntityType="MyDatabaseFileModel.Contact" />
+          <EntitySet Name="Events" EntityType="MyDatabaseFileModel.Event" />
+          <AssociationSet Name="ContactTransaction" Association="MyDatabaseFileModel.ContactTransaction">
+            <End Role="Contact" EntitySet="Contacts" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Contact" Relationship="MyDatabaseFileModel.ContactTransaction" FromRole="Transaction" ToRole="Contact" />
+          <Property Name="ContactId" Type="Int32" Nullable="true" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="35" />
+          <NavigationProperty Name="Transactions" Relationship="MyDatabaseFileModel.ContactTransaction" FromRole="Contact" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OccurrenceType" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="35" />
+          <Property Name="EventType" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="ContactTransaction">
+          <End Type="MyDatabaseFileModel.Contact" Role="Contact" Multiplicity="0..1" />
+          <End Type="MyDatabaseFileModel.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contact">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

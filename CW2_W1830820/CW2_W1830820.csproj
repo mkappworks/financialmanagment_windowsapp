@@ -53,6 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contact.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ContactModel.cs" />
     <Compile Include="DatabaseModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -91,6 +94,9 @@
     </Compile>
     <Compile Include="EditTransactionForm.Designer.cs">
       <DependentUpon>EditTransactionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Event.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EventModel.cs" />
     <Compile Include="GenerateTransactionReportForm.cs">
@@ -131,6 +137,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transaction.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="TransactionModel.cs" />
     <Compile Include="ViewContactForm.cs">
       <SubType>Form</SubType>
