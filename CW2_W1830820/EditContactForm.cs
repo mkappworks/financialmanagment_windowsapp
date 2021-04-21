@@ -12,55 +12,49 @@ namespace CW2_W1830820
 {
     public partial class EditContactForm : Form
     {
-        public EditContactForm()
+        public ContactDetails ContactDetailsData { get; set; }
+
+
+        public EditContactForm(int id, string type, string name)
         {
             InitializeComponent();
-            ContactDetails contactModel = new ContactDetails();
 
+            this.ContactDetailsData = new ContactDetails();
 
+            ContactDetailsData.Id = id;
+            ContactDetailsData.Type = type;
+            ContactDetailsData.Name = name;
 
-            if (contactModel.Type == "Payer")
+            if (ContactDetailsData.Type == "Payer")
             {
                 this.radioBtnPayer.Checked = true;
             }
-            else if (contactModel.Type == "Payee")
-
+            else if (ContactDetailsData.Type == "Payee")
             {
                 this.radioBtnPayee.Checked = true;
             }
 
-
-            this.textName.Text = contactModel.Name;
-       
+            this.textName.Text = ContactDetailsData.Name;
 
         }
 
         private void EditContact(object sender, EventArgs e)
         {
 
-            String type = radioBtnPayer.Text;
-
-            if (this.radioBtnPayer.Checked == true)
+            if (MessageBox.Show("Do you want to edit the selected contact?", "PFMS | Edit Contact", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                type = radioBtnPayer.Text;
+                ContactModel contactModel = new ContactModel();
+                this.ContactDetailsData.Name = textName.Text;
+                Console.WriteLine(this.ContactDetailsData.Id + " " + this.ContactDetailsData.Name);
+                contactModel.EditContact(this.ContactDetailsData.Id, this.ContactDetailsData.Name);
+
+                this.Close();
+
+
+
             }
-            else if (this.radioBtnPayee.Checked == true)
-            {
-                type = radioBtnPayer.Text;
-            }
 
-          
-
-            this.ContactManager(type, this.textName.Text);
-        }
-
-
-        private void ContactManager(String type, String name)
-        {
-            ContactDetails contactModel = new ContactDetails();
-            contactModel.Name = name;
-            contactModel.Type = type;
         }
     }
-        
-    }
+
+}

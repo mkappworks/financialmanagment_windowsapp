@@ -50,6 +50,7 @@ namespace CW2_W1830820
             // 
             this.groupBox1.Controls.Add(this.radioBtnPayee);
             this.groupBox1.Controls.Add(this.radioBtnPayer);
+            this.groupBox1.Enabled = false;
             this.groupBox1.Location = new System.Drawing.Point(123, 28);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(191, 46);

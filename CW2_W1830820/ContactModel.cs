@@ -30,12 +30,28 @@ namespace CW2_W1830820
         public dynamic GetContact()
         {
             MyDatabaseFileEntities db = new MyDatabaseFileEntities();
-            var query = db.Contacts;
-            // DataTable dataTable = new DataTable;
 
-            //query.Add(dataTable);
-            return query;
+            return db.Contacts;
+        }
 
+        public void EditContact(int id , String name) {
+            Contact contact = new Contact();
+
+            MyDatabaseFileEntities db = new MyDatabaseFileEntities();
+
+            var contactItem = db.Contacts.Find(id);
+            contactItem.Name = name;
+            db.SaveChanges();
+        }
+
+        public void DeleteContact(int id) {
+            Contact contact = new Contact();
+          
+            MyDatabaseFileEntities db = new MyDatabaseFileEntities();
+
+            var contactItem = db.Contacts.Find(id);
+            db.Contacts.Remove(contactItem);
+            db.SaveChanges();
         }
     }
 }

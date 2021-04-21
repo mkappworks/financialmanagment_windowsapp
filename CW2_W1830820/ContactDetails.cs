@@ -8,6 +8,7 @@ namespace CW2_W1830820
 {
     public class ContactDetails
     {
+       public int Id { get; set; }
        public string Type { get; set; }
        public string Name { get; set; }
         

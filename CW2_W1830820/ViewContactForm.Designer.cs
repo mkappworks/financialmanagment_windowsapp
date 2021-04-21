@@ -31,21 +31,14 @@ namespace CW2_W1830820
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridViewContact = new System.Windows.Forms.DataGridView();
+            this.contactDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.contactDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.contactHeaderDataTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.contactHeaderBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.contactHeaderTransactionHeaderBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.contactHeaderDataTableBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContact)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.contactDetailsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contactHeaderDataTableBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contactHeaderBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contactHeaderTransactionHeaderBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contactHeaderDataTableBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridViewContact
@@ -55,6 +48,7 @@ namespace CW2_W1830820
             this.dataGridViewContact.AutoGenerateColumns = false;
             this.dataGridViewContact.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewContact.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
             this.typeDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn,
             this.Edit,
@@ -66,6 +60,17 @@ namespace CW2_W1830820
             this.dataGridViewContact.Size = new System.Drawing.Size(689, 199);
             this.dataGridViewContact.TabIndex = 0;
             this.dataGridViewContact.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewContact_CellContentClick);
+            // 
+            // contactDetailsBindingSource
+            // 
+            this.contactDetailsBindingSource.DataSource = typeof(CW2_W1830820.ContactDetails);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // typeDataGridViewTextBoxColumn
             // 
@@ -80,7 +85,6 @@ namespace CW2_W1830820
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Width = 200;
             // 
             // Edit
             // 
@@ -98,14 +102,6 @@ namespace CW2_W1830820
             this.Delete.Text = "Delete";
             this.Delete.UseColumnTextForButtonValue = true;
             // 
-            // contactDetailsBindingSource
-            // 
-            this.contactDetailsBindingSource.DataSource = typeof(CW2_W1830820.ContactDetails);
-            // 
-            // contactHeaderTransactionHeaderBindingSource
-            // 
-            this.contactHeaderTransactionHeaderBindingSource.DataSource = this.contactHeaderBindingSource;
-            // 
             // ViewContactForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -117,10 +113,6 @@ namespace CW2_W1830820
             this.Load += new System.EventHandler(this.ViewContactLoad);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContact)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.contactDetailsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contactHeaderDataTableBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contactHeaderBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contactHeaderTransactionHeaderBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contactHeaderDataTableBindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -128,10 +120,7 @@ namespace CW2_W1830820
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridViewContact;
-        private System.Windows.Forms.BindingSource contactHeaderDataTableBindingSource;
-        private System.Windows.Forms.BindingSource contactHeaderBindingSource;
-        private System.Windows.Forms.BindingSource contactHeaderTransactionHeaderBindingSource;
-        private System.Windows.Forms.BindingSource contactHeaderDataTableBindingSource1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn Edit;

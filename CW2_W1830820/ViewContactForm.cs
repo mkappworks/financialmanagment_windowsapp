@@ -16,45 +16,70 @@ namespace CW2_W1830820
         public ViewContactForm()
         {
             InitializeComponent();
-            
+
         }
 
-      
+
 
         private void ViewContactLoad(object sender, EventArgs e)
         {
-   MyDatabaseFileEntities db = new MyDatabaseFileEntities();
-        
-            var ContactTable = db.Contacts;
+            getData();
+
+        }
+
+        private void getData()
+        {
+            this.dataGridViewContact.Rows.Clear();
+
+            ContactModel contactModel = new ContactModel();
+            var ContactTable = contactModel.GetContact();
 
             foreach (var contact in ContactTable)
             {
-                          contactDetailsBindingSource.Add(new ContactDetails()
+                this.contactDetailsBindingSource.Add(new ContactDetails()
                 {
+                    Id = contact.Id,
                     Type = contact.Type,
                     Name = contact.Name
 
                 });
-                
-         
-                
-
             }
-            
-        
-            
-
         }
 
         private void dataGridViewContact_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            if(dataGridViewContact.Columns[e.ColumnIndex].Name == "Edit") { }
+            if (dataGridViewContact.Columns[e.ColumnIndex].Name == "Edit")
+            {
 
-            if (dataGridViewContact.Columns[e.ColumnIndex].Name == "Delete") {
+                int selectId = (int)dataGridViewContact.Rows[e.RowIndex].Cells[0].Value;
+                String selectType = (string)dataGridViewContact.Rows[e.RowIndex].Cells[1].Value;
+                String selectName = (string)dataGridViewContact.Rows[e.RowIndex].Cells[2].Value;
+
+                EditContactForm editContactForm = new EditContactForm(selectId, selectType, selectName);
+                editContactForm.Activate();
+                editContactForm.ShowDialog();
+
+                getData();
+
+
+            }
+
+            if (dataGridViewContact.Columns[e.ColumnIndex].Name == "Delete")
+            {
+
 
                 if (MessageBox.Show("Do you want to delete the selected contact?", "PFMS | Delete Contact", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+
+                    int selectId = (int)dataGridViewContact.Rows[e.RowIndex].Cells[0].Value;
+
+                    ContactModel contactModel = new ContactModel();
+                    contactModel.DeleteContact(selectId);
+
                     contactDetailsBindingSource.RemoveCurrent();
+                }
+
             }
         }
     }

@@ -36,7 +36,7 @@ namespace CW2_W1830820
                 type = radioBtnPayer.Text;
             }
             else if(this.radioBtnPayee.Checked == true) {
-                type = radioBtnPayer.Text;
+                type = radioBtnPayee.Text;
             }
 
             this.ContactDetailsData = new ContactDetails();
