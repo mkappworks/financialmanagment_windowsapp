@@ -6,43 +6,43 @@
     <edmx:StorageModels>
     <Schema Namespace="MyDatabaseFileModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="MyDatabaseFileModelStoreContainer">
-    <EntitySet Name="Transactions" EntityType="MyDatabaseFileModel.Store.Transactions" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Contacts" EntityType="MyDatabaseFileModel.Store.Contacts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Transactions" EntityType="MyDatabaseFileModel.Store.Transactions" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Events" EntityType="MyDatabaseFileModel.Store.Events" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="ContactTransaction" Association="MyDatabaseFileModel.Store.ContactTransaction">
       <End Role="Contact" EntitySet="Contacts" />
       <End Role="Transaction" EntitySet="Transactions" />
     </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Contacts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
   <EntityType Name="Transactions">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Date" Type="datetime" Nullable="false" />
-    <Property Name="Type" Type="int" Nullable="false" />
-    <Property Name="ContactId" Type="int" Nullable="true" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Amount" Type="float" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Contacts">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Type" Type="int" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="35" />
+    <Property Name="ContactId" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Events">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="OccurrenceType" Type="int" Nullable="false" />
-    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="OccurrenceType" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
     <Property Name="StartDate" Type="datetime" Nullable="false" />
     <Property Name="EndDate" Type="datetime" Nullable="false" />
-    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="35" />
-    <Property Name="EventType" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EventType" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <Association Name="ContactTransaction">
     <End Role="Contact" Type="MyDatabaseFileModel.Store.Contacts" Multiplicity="0..1" />
@@ -61,45 +61,45 @@
     <edmx:ConceptualModels>
       <Schema Namespace="MyDatabaseFileModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="MyDatabaseFileEntities" annotation:LazyLoadingEnabled="true" >
-          <EntitySet Name="Transactions" EntityType="MyDatabaseFileModel.Transaction" />
           <EntitySet Name="Contacts" EntityType="MyDatabaseFileModel.Contact" />
+          <EntitySet Name="Transactions" EntityType="MyDatabaseFileModel.Transaction" />
           <EntitySet Name="Events" EntityType="MyDatabaseFileModel.Event" />
           <AssociationSet Name="ContactTransaction" Association="MyDatabaseFileModel.ContactTransaction">
             <End Role="Contact" EntitySet="Contacts" />
             <End Role="Transaction" EntitySet="Transactions" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Transactions" Relationship="MyDatabaseFileModel.ContactTransaction" FromRole="Contact" ToRole="Transaction" />
+        </EntityType>
         <EntityType Name="Transaction">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Date" Type="DateTime" Nullable="false" />
-          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" />
+          <Property Name="Amount" Type="Double" Nullable="false" />
           <NavigationProperty Name="Contact" Relationship="MyDatabaseFileModel.ContactTransaction" FromRole="Transaction" ToRole="Contact" />
           <Property Name="ContactId" Type="Int32" Nullable="true" />
-          <Property Name="Amount" Type="Double" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Contact">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Type" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="35" />
-          <NavigationProperty Name="Transactions" Relationship="MyDatabaseFileModel.ContactTransaction" FromRole="Contact" ToRole="Transaction" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OccurrenceType" Type="Int32" Nullable="false" />
-          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="OccurrenceType" Type="String" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" />
           <Property Name="EndDate" Type="DateTime" Nullable="false" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="35" />
-          <Property Name="EventType" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="EventType" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="ContactTransaction">
           <End Type="MyDatabaseFileModel.Contact" Role="Contact" Multiplicity="0..1" />
@@ -119,23 +119,23 @@
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="MyDatabaseFileModelStoreContainer" CdmEntityContainer="MyDatabaseFileEntities">
-    <EntitySetMapping Name="Transactions">
-      <EntityTypeMapping TypeName="IsTypeOf(MyDatabaseFileModel.Transaction)">
-        <MappingFragment StoreEntitySet="Transactions">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
-          <ScalarProperty Name="Type" ColumnName="Type" />
-          <ScalarProperty Name="ContactId" ColumnName="ContactId" />
-          <ScalarProperty Name="Amount" ColumnName="Amount" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Contacts">
       <EntityTypeMapping TypeName="IsTypeOf(MyDatabaseFileModel.Contact)">
         <MappingFragment StoreEntitySet="Contacts">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transactions">
+      <EntityTypeMapping TypeName="IsTypeOf(MyDatabaseFileModel.Transaction)">
+        <MappingFragment StoreEntitySet="Transactions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="ContactId" ColumnName="ContactId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

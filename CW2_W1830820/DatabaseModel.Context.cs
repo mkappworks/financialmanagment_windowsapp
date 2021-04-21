@@ -25,8 +25,8 @@ namespace CW2_W1830820
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Event> Events { get; set; }
     }
 }

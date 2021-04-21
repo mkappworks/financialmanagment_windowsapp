@@ -16,9 +16,9 @@ namespace CW2_W1830820
     {
         public int Id { get; set; }
         public System.DateTime Date { get; set; }
-        public int Type { get; set; }
-        public Nullable<int> ContactId { get; set; }
+        public string Type { get; set; }
         public double Amount { get; set; }
+        public Nullable<int> ContactId { get; set; }
     
         public virtual Contact Contact { get; set; }
     }

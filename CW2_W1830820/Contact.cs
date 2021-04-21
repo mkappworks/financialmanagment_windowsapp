@@ -20,7 +20,7 @@ namespace CW2_W1830820
         }
     
         public int Id { get; set; }
-        public int Type { get; set; }
+        public string Type { get; set; }
         public string Name { get; set; }
     
         public virtual ICollection<Transaction> Transactions { get; set; }

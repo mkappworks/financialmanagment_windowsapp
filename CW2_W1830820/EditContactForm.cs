@@ -17,11 +17,14 @@ namespace CW2_W1830820
             InitializeComponent();
             ContactDetails contactModel = new ContactDetails();
 
-            if (contactModel.Type == 1)
+
+
+            if (contactModel.Type == "Payer")
             {
                 this.radioBtnPayer.Checked = true;
             }
-            else if (contactModel.Type == 2)
+            else if (contactModel.Type == "Payee")
+
             {
                 this.radioBtnPayee.Checked = true;
             }
@@ -35,22 +38,24 @@ namespace CW2_W1830820
         private void EditContact(object sender, EventArgs e)
         {
 
-            int typeIndex = 1;
+            String type = radioBtnPayer.Text;
 
             if (this.radioBtnPayer.Checked == true)
             {
-                typeIndex = 1;
+                type = radioBtnPayer.Text;
             }
             else if (this.radioBtnPayee.Checked == true)
             {
-                typeIndex = 2;
+                type = radioBtnPayer.Text;
             }
 
-            this.ContactManager(typeIndex, this.textName.Text);
+          
+
+            this.ContactManager(type, this.textName.Text);
         }
 
 
-        private void ContactManager(int type, String name)
+        private void ContactManager(String type, String name)
         {
             ContactDetails contactModel = new ContactDetails();
             contactModel.Name = name;

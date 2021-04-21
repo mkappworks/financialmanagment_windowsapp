@@ -9,8 +9,8 @@ namespace CW2_W1830820
     public class TransactionDetails
     {
         public DateTime Date { get; set; }
-        public int Type { get; set; }
-        public String Contact { get; set; }
+        public string Type { get; set; }
+        public string Contact { get; set; }
         public double Amount { get; set; }
 
     }

@@ -27,25 +27,25 @@ namespace CW2_W1830820
         private void SaveTransaction(object sender, EventArgs e)
         {
 
-            int typeIndex = 1;
+            string type = radioBtnExpense.Text;
 
             if (this.radioBtnExpense.Checked == true)
             {
-                typeIndex = 1;
+                type = radioBtnExpense.Text;
             }
             else if (this.radioBtnIncome.Checked == true)
             {
-                typeIndex = 2;
+                type = radioBtnIncome.Text;
             }
 
             this.comboBoxContact.Text = "Sam";
 
-            this.TransactionManager(this.dateTimePicker.Value, typeIndex, this.comboBoxContact.Text , double.Parse( this.textBoxAmount.Text));
+            this.TransactionManager(this.dateTimePicker.Value, type, this.comboBoxContact.Text , double.Parse( this.textBoxAmount.Text));
         }
 
         
 
-        private void TransactionManager(DateTime date, int type, String contact, double amount)
+        private void TransactionManager(DateTime date, string type, string contact, double amount)
         {
             TransactionDetails transactionModel = new TransactionDetails();
             transactionModel.Date = date;
@@ -57,10 +57,11 @@ namespace CW2_W1830820
             Console.WriteLine(transactionModel.Amount);
             Console.WriteLine(transactionModel.Contact);
 
-            this.DBWrite(transactionModel);
+          //  this.DBWrite(transactionModel);
 
         }
 
+        /*
         private void DBWrite(TransactionDetails transactionModel)
         {
             DBManager.TransactionHeaderRow row = this.dbManager.TransactionHeader.NewTransactionHeaderRow();
@@ -77,7 +78,7 @@ namespace CW2_W1830820
 
           
             Transaction transaction = new Transaction();
-            Contact contact = new Contact();
+            //Contact contact = new Contact();
 
             transaction.Date = row.Date;
             transaction.Type = row.Type;
@@ -95,8 +96,8 @@ namespace CW2_W1830820
             db.SaveChanges();
 
             this.Close();
-
+        
         }
-  
+  */
     }
 }

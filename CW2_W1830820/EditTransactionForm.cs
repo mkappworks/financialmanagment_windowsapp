@@ -17,6 +17,7 @@ namespace CW2_W1830820
             InitializeComponent();
            TransactionDetails transactionModel = new TransactionDetails();
 
+            /*
             if (transactionModel.Type == 1)
             {
                 this.radioBtnExpense.Checked = true;
@@ -25,6 +26,7 @@ namespace CW2_W1830820
             {
                 this.radioBtnIncome.Checked = true;
             }
+            */
 
 
             this.dateTimePicker.Value = transactionModel.Date;
@@ -35,7 +37,8 @@ namespace CW2_W1830820
         private void EditTransaction(object sender, EventArgs e)
         {
 
-            int typeIndex = 1;
+           // string typeIndex = "Income";
+            /*
 
             if (this.radioBtnExpense.Checked == true)
             {
@@ -45,12 +48,12 @@ namespace CW2_W1830820
             {
                 typeIndex = 2;
             }
-
-            this.TransactionManager(this.dateTimePicker.Value, typeIndex, this.comboBoxContact.Text, double.Parse(this.textBoxAmount.Text));
+            */
+           // this.TransactionManager(this.dateTimePicker.Value, typeIndex, this.comboBoxContact.Text, double.Parse(this.textBoxAmount.Text));
         }
 
 
-        private void TransactionManager(DateTime date, int type, String contact, double amount)
+        private void TransactionManager(DateTime date, string type, string contact, double amount)
         {
             TransactionDetails transactionModel = new TransactionDetails();
             transactionModel.Date = date;

@@ -30,16 +30,17 @@ namespace CW2_W1830820
         private void SaveContact(object sender, EventArgs e)
 
         {
-            int typeIndex=1;
+            String type=radioBtnPayer.Text;
 
             if (this.radioBtnPayer.Checked == true) {
-                typeIndex = 1;
-            }else if(this.radioBtnPayee.Checked == true) {
-                typeIndex = 2;
+                type = radioBtnPayer.Text;
+            }
+            else if(this.radioBtnPayee.Checked == true) {
+                type = radioBtnPayer.Text;
             }
 
             this.ContactDetailsData = new ContactDetails();
-            this.ContactDetailsData.Type = typeIndex;
+            this.ContactDetailsData.Type = type;
             this.ContactDetailsData.Name = this.textName.Text;
 
             if (File.Exists(@"contactdata.xml"))
@@ -61,11 +62,13 @@ namespace CW2_W1830820
             ContactModel contactModel = new ContactModel();
             contactModel.SaveContact(this.ContactDetailsData.Type, this.ContactDetailsData.Name);
 
+            this.dbManager.Reset();
+            File.Delete(@"contactdata.xml");
+
             MessageBox.Show("Successfully Saved");
 
-            this.Close();
-
-        
+            this.textName.Clear();
+                
         }
 
     }

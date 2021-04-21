@@ -15,11 +15,11 @@ namespace CW2_W1830820
     public partial class Event
     {
         public int Id { get; set; }
-        public int OccurrenceType { get; set; }
-        public int Type { get; set; }
+        public string OccurrenceType { get; set; }
+        public string Type { get; set; }
         public System.DateTime StartDate { get; set; }
         public System.DateTime EndDate { get; set; }
         public string Description { get; set; }
-        public int EventType { get; set; }
+        public string EventType { get; set; }
     }
 }

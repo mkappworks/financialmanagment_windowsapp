@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b40fe59fee0e428f82eb4b7805a7a64a" Name="Diagram1" >
-        <EntityTypeShape EntityType="MyDatabaseFileModel.Transaction" Width="2.25" PointX="4.875" PointY="1.75" />
-        <EntityTypeShape EntityType="MyDatabaseFileModel.Contact" Width="2.25" PointX="1.25" PointY="1.5" />
-        <EntityTypeShape EntityType="MyDatabaseFileModel.Event" Width="1.5" PointX="8.125" PointY="1.25" />
+      <Diagram DiagramId="de6ebb6ba78c49a0a0e16ac40a81c5ad" Name="Diagram1" >
+        <EntityTypeShape EntityType="MyDatabaseFileModel.Contact" Width="1.5" PointX="3.625" PointY="1.25" />
+        <EntityTypeShape EntityType="MyDatabaseFileModel.Transaction" Width="1.5" PointX="6" PointY="1.25" />
+        <EntityTypeShape EntityType="MyDatabaseFileModel.Event" Width="1.5" PointX="8.75" PointY="1.125" />
         <AssociationConnector Association="MyDatabaseFileModel.ContactTransaction" />
       </Diagram>
     </edmx:Diagrams>

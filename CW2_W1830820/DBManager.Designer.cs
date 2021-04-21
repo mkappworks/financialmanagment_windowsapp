@@ -24,13 +24,13 @@ namespace CW2_W1830820 {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class DBManager : global::System.Data.DataSet {
         
-        private TransactionHeaderDataTable tableTransactionHeader;
-        
         private ContactHeaderDataTable tableContactHeader;
+        
+        private TransactionHeaderDataTable tableTransactionHeader;
         
         private EventHeaderDataTable tableEventHeader;
         
-        private global::System.Data.DataRelation relationContactHeader_TransactionHeader;
+        private global::System.Data.DataRelation relationFK_ContactHeader_TransactionHeader;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -60,11 +60,11 @@ namespace CW2_W1830820 {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["TransactionHeader"] != null)) {
-                    base.Tables.Add(new TransactionHeaderDataTable(ds.Tables["TransactionHeader"]));
-                }
                 if ((ds.Tables["ContactHeader"] != null)) {
                     base.Tables.Add(new ContactHeaderDataTable(ds.Tables["ContactHeader"]));
+                }
+                if ((ds.Tables["TransactionHeader"] != null)) {
+                    base.Tables.Add(new TransactionHeaderDataTable(ds.Tables["TransactionHeader"]));
                 }
                 if ((ds.Tables["EventHeader"] != null)) {
                     base.Tables.Add(new EventHeaderDataTable(ds.Tables["EventHeader"]));
@@ -91,9 +91,9 @@ namespace CW2_W1830820 {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public TransactionHeaderDataTable TransactionHeader {
+        public ContactHeaderDataTable ContactHeader {
             get {
-                return this.tableTransactionHeader;
+                return this.tableContactHeader;
             }
         }
         
@@ -101,9 +101,9 @@ namespace CW2_W1830820 {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public ContactHeaderDataTable ContactHeader {
+        public TransactionHeaderDataTable TransactionHeader {
             get {
-                return this.tableContactHeader;
+                return this.tableTransactionHeader;
             }
         }
         
@@ -184,11 +184,11 @@ namespace CW2_W1830820 {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["TransactionHeader"] != null)) {
-                    base.Tables.Add(new TransactionHeaderDataTable(ds.Tables["TransactionHeader"]));
-                }
                 if ((ds.Tables["ContactHeader"] != null)) {
                     base.Tables.Add(new ContactHeaderDataTable(ds.Tables["ContactHeader"]));
+                }
+                if ((ds.Tables["TransactionHeader"] != null)) {
+                    base.Tables.Add(new TransactionHeaderDataTable(ds.Tables["TransactionHeader"]));
                 }
                 if ((ds.Tables["EventHeader"] != null)) {
                     base.Tables.Add(new EventHeaderDataTable(ds.Tables["EventHeader"]));
@@ -226,16 +226,16 @@ namespace CW2_W1830820 {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableTransactionHeader = ((TransactionHeaderDataTable)(base.Tables["TransactionHeader"]));
-            if ((initTable == true)) {
-                if ((this.tableTransactionHeader != null)) {
-                    this.tableTransactionHeader.InitVars();
-                }
-            }
             this.tableContactHeader = ((ContactHeaderDataTable)(base.Tables["ContactHeader"]));
             if ((initTable == true)) {
                 if ((this.tableContactHeader != null)) {
                     this.tableContactHeader.InitVars();
+                }
+            }
+            this.tableTransactionHeader = ((TransactionHeaderDataTable)(base.Tables["TransactionHeader"]));
+            if ((initTable == true)) {
+                if ((this.tableTransactionHeader != null)) {
+                    this.tableTransactionHeader.InitVars();
                 }
             }
             this.tableEventHeader = ((EventHeaderDataTable)(base.Tables["EventHeader"]));
@@ -244,7 +244,7 @@ namespace CW2_W1830820 {
                     this.tableEventHeader.InitVars();
                 }
             }
-            this.relationContactHeader_TransactionHeader = this.Relations["ContactHeader_TransactionHeader"];
+            this.relationFK_ContactHeader_TransactionHeader = this.Relations["FK_ContactHeader_TransactionHeader"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -255,27 +255,35 @@ namespace CW2_W1830820 {
             this.Namespace = "http://tempuri.org/DBManager.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableTransactionHeader = new TransactionHeaderDataTable();
-            base.Tables.Add(this.tableTransactionHeader);
             this.tableContactHeader = new ContactHeaderDataTable();
             base.Tables.Add(this.tableContactHeader);
+            this.tableTransactionHeader = new TransactionHeaderDataTable();
+            base.Tables.Add(this.tableTransactionHeader);
             this.tableEventHeader = new EventHeaderDataTable();
             base.Tables.Add(this.tableEventHeader);
-            this.relationContactHeader_TransactionHeader = new global::System.Data.DataRelation("ContactHeader_TransactionHeader", new global::System.Data.DataColumn[] {
+            global::System.Data.ForeignKeyConstraint fkc;
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_ContactHeader_TransactionHeader", new global::System.Data.DataColumn[] {
+                        this.tableContactHeader.ContactNoColumn}, new global::System.Data.DataColumn[] {
+                        this.tableTransactionHeader.FK_ContactNoColumn});
+            this.tableTransactionHeader.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
+            fkc.DeleteRule = global::System.Data.Rule.None;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
+            this.relationFK_ContactHeader_TransactionHeader = new global::System.Data.DataRelation("FK_ContactHeader_TransactionHeader", new global::System.Data.DataColumn[] {
                         this.tableContactHeader.ContactNoColumn}, new global::System.Data.DataColumn[] {
                         this.tableTransactionHeader.FK_ContactNoColumn}, false);
-            this.Relations.Add(this.relationContactHeader_TransactionHeader);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private bool ShouldSerializeTransactionHeader() {
-            return false;
+            this.Relations.Add(this.relationFK_ContactHeader_TransactionHeader);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private bool ShouldSerializeContactHeader() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private bool ShouldSerializeTransactionHeader() {
             return false;
         }
         
@@ -341,13 +349,301 @@ namespace CW2_W1830820 {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public delegate void TransactionHeaderRowChangeEventHandler(object sender, TransactionHeaderRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public delegate void ContactHeaderRowChangeEventHandler(object sender, ContactHeaderRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public delegate void TransactionHeaderRowChangeEventHandler(object sender, TransactionHeaderRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public delegate void EventHeaderRowChangeEventHandler(object sender, EventHeaderRowChangeEvent e);
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class ContactHeaderDataTable : global::System.Data.TypedTableBase<ContactHeaderRow> {
+            
+            private global::System.Data.DataColumn columnContactNo;
+            
+            private global::System.Data.DataColumn columnName;
+            
+            private global::System.Data.DataColumn columnType;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public ContactHeaderDataTable() {
+                this.TableName = "ContactHeader";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal ContactHeaderDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected ContactHeaderDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn ContactNoColumn {
+                get {
+                    return this.columnContactNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn NameColumn {
+                get {
+                    return this.columnName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn TypeColumn {
+                get {
+                    return this.columnType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public ContactHeaderRow this[int index] {
+                get {
+                    return ((ContactHeaderRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event ContactHeaderRowChangeEventHandler ContactHeaderRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event ContactHeaderRowChangeEventHandler ContactHeaderRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event ContactHeaderRowChangeEventHandler ContactHeaderRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event ContactHeaderRowChangeEventHandler ContactHeaderRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void AddContactHeaderRow(ContactHeaderRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public ContactHeaderRow AddContactHeaderRow(string Name, string Type) {
+                ContactHeaderRow rowContactHeaderRow = ((ContactHeaderRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        Name,
+                        Type};
+                rowContactHeaderRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowContactHeaderRow);
+                return rowContactHeaderRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public ContactHeaderRow FindByContactNo(int ContactNo) {
+                return ((ContactHeaderRow)(this.Rows.Find(new object[] {
+                            ContactNo})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                ContactHeaderDataTable cln = ((ContactHeaderDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new ContactHeaderDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal void InitVars() {
+                this.columnContactNo = base.Columns["ContactNo"];
+                this.columnName = base.Columns["Name"];
+                this.columnType = base.Columns["Type"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            private void InitClass() {
+                this.columnContactNo = new global::System.Data.DataColumn("ContactNo", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnContactNo);
+                this.columnName = new global::System.Data.DataColumn("Name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnName);
+                this.columnType = new global::System.Data.DataColumn("Type", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnType);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnContactNo}, true));
+                this.columnContactNo.AutoIncrement = true;
+                this.columnContactNo.AutoIncrementSeed = 1;
+                this.columnContactNo.AllowDBNull = false;
+                this.columnContactNo.Unique = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public ContactHeaderRow NewContactHeaderRow() {
+                return ((ContactHeaderRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new ContactHeaderRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(ContactHeaderRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.ContactHeaderRowChanged != null)) {
+                    this.ContactHeaderRowChanged(this, new ContactHeaderRowChangeEvent(((ContactHeaderRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.ContactHeaderRowChanging != null)) {
+                    this.ContactHeaderRowChanging(this, new ContactHeaderRowChangeEvent(((ContactHeaderRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.ContactHeaderRowDeleted != null)) {
+                    this.ContactHeaderRowDeleted(this, new ContactHeaderRowChangeEvent(((ContactHeaderRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.ContactHeaderRowDeleting != null)) {
+                    this.ContactHeaderRowDeleting(this, new ContactHeaderRowChangeEvent(((ContactHeaderRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void RemoveContactHeaderRow(ContactHeaderRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                DBManager ds = new DBManager();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "ContactHeaderDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -476,7 +772,7 @@ namespace CW2_W1830820 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public TransactionHeaderRow AddTransactionHeaderRow(System.DateTime Date, int Type, ContactHeaderRow parentContactHeaderRowByContactHeader_TransactionHeader, double Amount) {
+            public TransactionHeaderRow AddTransactionHeaderRow(System.DateTime Date, string Type, ContactHeaderRow parentContactHeaderRowByFK_ContactHeader_TransactionHeader, double Amount) {
                 TransactionHeaderRow rowTransactionHeaderRow = ((TransactionHeaderRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -484,8 +780,8 @@ namespace CW2_W1830820 {
                         Type,
                         null,
                         Amount};
-                if ((parentContactHeaderRowByContactHeader_TransactionHeader != null)) {
-                    columnValuesArray[3] = parentContactHeaderRowByContactHeader_TransactionHeader[0];
+                if ((parentContactHeaderRowByFK_ContactHeader_TransactionHeader != null)) {
+                    columnValuesArray[3] = parentContactHeaderRowByFK_ContactHeader_TransactionHeader[0];
                 }
                 rowTransactionHeaderRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTransactionHeaderRow);
@@ -530,13 +826,13 @@ namespace CW2_W1830820 {
                 base.Columns.Add(this.columnTransactionNo);
                 this.columnDate = new global::System.Data.DataColumn("Date", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDate);
-                this.columnType = new global::System.Data.DataColumn("Type", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnType = new global::System.Data.DataColumn("Type", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnType);
                 this.columnFK_ContactNo = new global::System.Data.DataColumn("FK_ContactNo", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFK_ContactNo);
                 this.columnAmount = new global::System.Data.DataColumn("Amount", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAmount);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("TransactionHeaderKey1", new global::System.Data.DataColumn[] {
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnTransactionNo}, true));
                 this.columnTransactionNo.AutoIncrement = true;
                 this.columnTransactionNo.AutoIncrementSeed = 1;
@@ -628,294 +924,6 @@ namespace CW2_W1830820 {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "TransactionHeaderDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class ContactHeaderDataTable : global::System.Data.TypedTableBase<ContactHeaderRow> {
-            
-            private global::System.Data.DataColumn columnContactNo;
-            
-            private global::System.Data.DataColumn columnType;
-            
-            private global::System.Data.DataColumn columnName;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ContactHeaderDataTable() {
-                this.TableName = "ContactHeader";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal ContactHeaderDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected ContactHeaderDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn ContactNoColumn {
-                get {
-                    return this.columnContactNo;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn TypeColumn {
-                get {
-                    return this.columnType;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn NameColumn {
-                get {
-                    return this.columnName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ContactHeaderRow this[int index] {
-                get {
-                    return ((ContactHeaderRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event ContactHeaderRowChangeEventHandler ContactHeaderRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event ContactHeaderRowChangeEventHandler ContactHeaderRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event ContactHeaderRowChangeEventHandler ContactHeaderRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event ContactHeaderRowChangeEventHandler ContactHeaderRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void AddContactHeaderRow(ContactHeaderRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ContactHeaderRow AddContactHeaderRow(int Type, string Name) {
-                ContactHeaderRow rowContactHeaderRow = ((ContactHeaderRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        Type,
-                        Name};
-                rowContactHeaderRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowContactHeaderRow);
-                return rowContactHeaderRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ContactHeaderRow FindByContactNo(int ContactNo) {
-                return ((ContactHeaderRow)(this.Rows.Find(new object[] {
-                            ContactNo})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                ContactHeaderDataTable cln = ((ContactHeaderDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new ContactHeaderDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal void InitVars() {
-                this.columnContactNo = base.Columns["ContactNo"];
-                this.columnType = base.Columns["Type"];
-                this.columnName = base.Columns["Name"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            private void InitClass() {
-                this.columnContactNo = new global::System.Data.DataColumn("ContactNo", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnContactNo);
-                this.columnType = new global::System.Data.DataColumn("Type", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnType);
-                this.columnName = new global::System.Data.DataColumn("Name", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnName);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("ContactHeaderKey1", new global::System.Data.DataColumn[] {
-                                this.columnContactNo}, true));
-                this.columnContactNo.AutoIncrement = true;
-                this.columnContactNo.AutoIncrementSeed = 1;
-                this.columnContactNo.AllowDBNull = false;
-                this.columnContactNo.Unique = true;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ContactHeaderRow NewContactHeaderRow() {
-                return ((ContactHeaderRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new ContactHeaderRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(ContactHeaderRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.ContactHeaderRowChanged != null)) {
-                    this.ContactHeaderRowChanged(this, new ContactHeaderRowChangeEvent(((ContactHeaderRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.ContactHeaderRowChanging != null)) {
-                    this.ContactHeaderRowChanging(this, new ContactHeaderRowChangeEvent(((ContactHeaderRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.ContactHeaderRowDeleted != null)) {
-                    this.ContactHeaderRowDeleted(this, new ContactHeaderRowChangeEvent(((ContactHeaderRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.ContactHeaderRowDeleting != null)) {
-                    this.ContactHeaderRowDeleting(this, new ContactHeaderRowChangeEvent(((ContactHeaderRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void RemoveContactHeaderRow(ContactHeaderRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                DBManager ds = new DBManager();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "ContactHeaderDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1103,7 +1111,7 @@ namespace CW2_W1830820 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public EventHeaderRow AddEventHeaderRow(int OccurrenceType, int Type, System.DateTime StartDate, System.DateTime EndDate, string Description, int EventType) {
+            public EventHeaderRow AddEventHeaderRow(string OccurrenceType, string Type, System.DateTime StartDate, System.DateTime EndDate, string Description, string EventType) {
                 EventHeaderRow rowEventHeaderRow = ((EventHeaderRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1156,9 +1164,9 @@ namespace CW2_W1830820 {
             private void InitClass() {
                 this.columnEventNo = new global::System.Data.DataColumn("EventNo", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEventNo);
-                this.columnOccurrenceType = new global::System.Data.DataColumn("OccurrenceType", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnOccurrenceType = new global::System.Data.DataColumn("OccurrenceType", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOccurrenceType);
-                this.columnType = new global::System.Data.DataColumn("Type", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnType = new global::System.Data.DataColumn("Type", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnType);
                 this.columnStartDate = new global::System.Data.DataColumn("StartDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnStartDate);
@@ -1166,9 +1174,9 @@ namespace CW2_W1830820 {
                 base.Columns.Add(this.columnEndDate);
                 this.columnDescription = new global::System.Data.DataColumn("Description", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDescription);
-                this.columnEventType = new global::System.Data.DataColumn("EventType", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnEventType = new global::System.Data.DataColumn("EventType", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEventType);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("EventHeaderKey1", new global::System.Data.DataColumn[] {
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnEventNo}, true));
                 this.columnEventNo.AutoIncrement = true;
                 this.columnEventNo.AutoIncrementSeed = 1;
@@ -1303,6 +1311,99 @@ namespace CW2_W1830820 {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
+        public partial class ContactHeaderRow : global::System.Data.DataRow {
+            
+            private ContactHeaderDataTable tableContactHeader;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal ContactHeaderRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableContactHeader = ((ContactHeaderDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int ContactNo {
+                get {
+                    return ((int)(this[this.tableContactHeader.ContactNoColumn]));
+                }
+                set {
+                    this[this.tableContactHeader.ContactNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string Name {
+                get {
+                    try {
+                        return ((string)(this[this.tableContactHeader.NameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Name\' in table \'ContactHeader\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableContactHeader.NameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string Type {
+                get {
+                    try {
+                        return ((string)(this[this.tableContactHeader.TypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Type\' in table \'ContactHeader\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableContactHeader.TypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsNameNull() {
+                return this.IsNull(this.tableContactHeader.NameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetNameNull() {
+                this[this.tableContactHeader.NameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsTypeNull() {
+                return this.IsNull(this.tableContactHeader.TypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetTypeNull() {
+                this[this.tableContactHeader.TypeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public TransactionHeaderRow[] GetTransactionHeaderRows() {
+                if ((this.Table.ChildRelations["FK_ContactHeader_TransactionHeader"] == null)) {
+                    return new TransactionHeaderRow[0];
+                }
+                else {
+                    return ((TransactionHeaderRow[])(base.GetChildRows(this.Table.ChildRelations["FK_ContactHeader_TransactionHeader"])));
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
         public partial class TransactionHeaderRow : global::System.Data.DataRow {
             
             private TransactionHeaderDataTable tableTransactionHeader;
@@ -1343,10 +1444,10 @@ namespace CW2_W1830820 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int Type {
+            public string Type {
                 get {
                     try {
-                        return ((int)(this[this.tableTransactionHeader.TypeColumn]));
+                        return ((string)(this[this.tableTransactionHeader.TypeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Type\' in table \'TransactionHeader\' is DBNull.", e);
@@ -1393,10 +1494,10 @@ namespace CW2_W1830820 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public ContactHeaderRow ContactHeaderRow {
                 get {
-                    return ((ContactHeaderRow)(this.GetParentRow(this.Table.ParentRelations["ContactHeader_TransactionHeader"])));
+                    return ((ContactHeaderRow)(this.GetParentRow(this.Table.ParentRelations["FK_ContactHeader_TransactionHeader"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["ContactHeader_TransactionHeader"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_ContactHeader_TransactionHeader"]);
                 }
             }
             
@@ -1452,99 +1553,6 @@ namespace CW2_W1830820 {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class ContactHeaderRow : global::System.Data.DataRow {
-            
-            private ContactHeaderDataTable tableContactHeader;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal ContactHeaderRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableContactHeader = ((ContactHeaderDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int ContactNo {
-                get {
-                    return ((int)(this[this.tableContactHeader.ContactNoColumn]));
-                }
-                set {
-                    this[this.tableContactHeader.ContactNoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int Type {
-                get {
-                    try {
-                        return ((int)(this[this.tableContactHeader.TypeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Type\' in table \'ContactHeader\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableContactHeader.TypeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string Name {
-                get {
-                    try {
-                        return ((string)(this[this.tableContactHeader.NameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Name\' in table \'ContactHeader\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableContactHeader.NameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsTypeNull() {
-                return this.IsNull(this.tableContactHeader.TypeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetTypeNull() {
-                this[this.tableContactHeader.TypeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsNameNull() {
-                return this.IsNull(this.tableContactHeader.NameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetNameNull() {
-                this[this.tableContactHeader.NameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public TransactionHeaderRow[] GetTransactionHeaderRows() {
-                if ((this.Table.ChildRelations["ContactHeader_TransactionHeader"] == null)) {
-                    return new TransactionHeaderRow[0];
-                }
-                else {
-                    return ((TransactionHeaderRow[])(base.GetChildRows(this.Table.ChildRelations["ContactHeader_TransactionHeader"])));
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
         public partial class EventHeaderRow : global::System.Data.DataRow {
             
             private EventHeaderDataTable tableEventHeader;
@@ -1569,10 +1577,10 @@ namespace CW2_W1830820 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int OccurrenceType {
+            public string OccurrenceType {
                 get {
                     try {
-                        return ((int)(this[this.tableEventHeader.OccurrenceTypeColumn]));
+                        return ((string)(this[this.tableEventHeader.OccurrenceTypeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'OccurrenceType\' in table \'EventHeader\' is DBNull.", e);
@@ -1585,10 +1593,10 @@ namespace CW2_W1830820 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int Type {
+            public string Type {
                 get {
                     try {
-                        return ((int)(this[this.tableEventHeader.TypeColumn]));
+                        return ((string)(this[this.tableEventHeader.TypeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Type\' in table \'EventHeader\' is DBNull.", e);
@@ -1649,10 +1657,10 @@ namespace CW2_W1830820 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int EventType {
+            public string EventType {
                 get {
                     try {
-                        return ((int)(this[this.tableEventHeader.EventTypeColumn]));
+                        return ((string)(this[this.tableEventHeader.EventTypeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'EventType\' in table \'EventHeader\' is DBNull.", e);
@@ -1740,22 +1748,22 @@ namespace CW2_W1830820 {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public class TransactionHeaderRowChangeEvent : global::System.EventArgs {
+        public class ContactHeaderRowChangeEvent : global::System.EventArgs {
             
-            private TransactionHeaderRow eventRow;
+            private ContactHeaderRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public TransactionHeaderRowChangeEvent(TransactionHeaderRow row, global::System.Data.DataRowAction action) {
+            public ContactHeaderRowChangeEvent(ContactHeaderRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public TransactionHeaderRow Row {
+            public ContactHeaderRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -1774,22 +1782,22 @@ namespace CW2_W1830820 {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public class ContactHeaderRowChangeEvent : global::System.EventArgs {
+        public class TransactionHeaderRowChangeEvent : global::System.EventArgs {
             
-            private ContactHeaderRow eventRow;
+            private TransactionHeaderRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ContactHeaderRowChangeEvent(ContactHeaderRow row, global::System.Data.DataRowAction action) {
+            public TransactionHeaderRowChangeEvent(TransactionHeaderRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ContactHeaderRow Row {
+            public TransactionHeaderRow Row {
                 get {
                     return this.eventRow;
                 }

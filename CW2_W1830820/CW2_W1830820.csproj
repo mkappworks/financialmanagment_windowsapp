@@ -275,6 +275,7 @@
       <DependentUpon>DBManager.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\ContactDetails.datasource" />
     <None Include="Properties\DataSources\DBManager.ContactHeaderDataTable.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -292,8 +293,8 @@
   <ItemGroup>
     <Content Include="DatabaseModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DatabaseModel.Context.cs</LastGenOutput>
       <DependentUpon>DatabaseModel.edmx</DependentUpon>
+      <LastGenOutput>DatabaseModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="DatabaseModel.edmx.sql" />
     <Content Include="DatabaseModel.tt">

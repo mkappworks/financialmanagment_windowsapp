@@ -23,27 +23,39 @@ namespace CW2_W1830820
 
         private void ViewContactLoad(object sender, EventArgs e)
         {
-         
-      
-
-            MyDatabaseFileEntities db = new MyDatabaseFileEntities();
-            List listContacts = new List();
-            ContactDetails contactDetails = new ContactDetails();
-
+   MyDatabaseFileEntities db = new MyDatabaseFileEntities();
+        
             var ContactTable = db.Contacts;
 
             foreach (var contact in ContactTable)
             {
-                //this.dataGridViewContact.Rows.Add(contact.Name, contact.Type);
-                listContacts.Add(contactDetails.Name = contact.Name, contactDetails.Type = contact.Type);
+                          contactDetailsBindingSource.Add(new ContactDetails()
+                {
+                    Type = contact.Type,
+                    Name = contact.Name
+
+                });
+                
+         
+                
 
             }
+            
+        
+            
 
+        }
 
-           
-          
+        private void dataGridViewContact_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
+            if(dataGridViewContact.Columns[e.ColumnIndex].Name == "Edit") { }
 
+            if (dataGridViewContact.Columns[e.ColumnIndex].Name == "Delete") {
+
+                if (MessageBox.Show("Do you want to delete the selected contact?", "PFMS | Delete Contact", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    contactDetailsBindingSource.RemoveCurrent();
+            }
         }
     }
 }
