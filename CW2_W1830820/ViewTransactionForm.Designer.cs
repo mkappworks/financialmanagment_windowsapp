@@ -31,23 +31,20 @@ namespace CW2_W1830820
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-           
-            this.transactionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Contact = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.transactionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-         
             ((System.ComponentModel.ISupportInitialize)(this.transactionBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Date,
@@ -56,20 +53,10 @@ namespace CW2_W1830820
             this.Amount,
             this.Edit,
             this.Delete});
-            this.dataGridView1.DataSource = this.transactionBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(31, 37);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(646, 206);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // transaction
-            // 
-          
-            // 
-            // transactionBindingSource
-            // 
-           
-            this.transactionBindingSource.Position = 0;
             // 
             // Date
             // 
@@ -110,7 +97,6 @@ namespace CW2_W1830820
             this.Name = "ViewTransactionForm";
             this.Text = "ViewTransactionForm";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-    
             ((System.ComponentModel.ISupportInitialize)(this.transactionBindingSource)).EndInit();
             this.ResumeLayout(false);
 

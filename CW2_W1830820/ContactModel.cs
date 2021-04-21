@@ -12,7 +12,6 @@ namespace CW2_W1830820
 {
     class ContactModel
     {
-       // public MyDatabaseFileEntities DBContact { get; set; }
 
         public void SaveContact(int type, String name)
         {
@@ -27,54 +26,14 @@ namespace CW2_W1830820
             db.SaveChanges();
         }
 
-
-       // private DBManager dbManager = new DBManager();
-
-        public DataTable GetContact()
+        public dynamic GetContact()
         {
-
-            DataTable dt = new DataTable();
-
-            string connString = ConfigurationManager.ConnectionStrings["MyDatabaseFileEntities"].ConnectionString;
-
-            using (SqlConnection con = new SqlConnection(connString))
-            {
-                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Contacts", con))
-                {
-                    con.Open();
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    dt.Load(reader);
-                }
-            }
-
-            return dt;
-
-            /*
-            //this.DBContact = new MyDatabaseFileEntities();
             MyDatabaseFileEntities db = new MyDatabaseFileEntities();
-            var query = db.Contacts.Find(1);
-          
-            DBManager.ContactHeaderRow row = this.dbManager.ContactHeader.NewContactHeaderRow();
+            var query = db.Contacts;
+            // DataTable dataTable = new DataTable;
 
-            row.Name = query.Name;
-            row.Type = query.Type;
-
-            this.dbManager.ContactHeader.AddContactHeaderRow(row);
-            this.dbManager.AcceptChanges();
-
-            /*
-            foreach (var record in query) {
-                row.Name = record.Name;
-                row.Type = record.Type;
-
-                this.dbManager.ContactHeader.AddContactHeaderRow(row);
-                this.dbManager.AcceptChanges();
-            }
-            */
-
-
+            //query.Add(dataTable);
+            return query;
 
         }
     }

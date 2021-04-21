@@ -65,28 +65,8 @@ namespace CW2_W1830820
 
             this.Close();
 
-            //  this.ContactManager(typeIndex, this.textName.Text);
+        
         }
-/*
-       private void ContactManager(int type, String name)
-        {
-          
-            ContactDetails contactModel = new ContactDetails();
-            contactModel.Name = name;
-            contactModel.Type = type;
-
-            this.DBWrite(contactModel);
-
-
-        }
-
-
-        private void DBWrite(ContactDetails contactModel)
-        {
-           
-
-        }
-*/
 
     }
 }

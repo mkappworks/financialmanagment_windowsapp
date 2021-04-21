@@ -16,19 +16,35 @@ namespace CW2_W1830820
         public ViewContactForm()
         {
             InitializeComponent();
-           // ContactModel contactModel = new ContactModel();
-           // contactModel.GetContact();
+            
         }
 
-        private void contactHeaderDataTableBindingSource_CurrentChanged(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private void ViewContactLoad(object sender, EventArgs e)
         {
-            ContactModel contactModel = new ContactModel();
-            dataGridViewContact.DataSource = contactModel.GetContact();
+         
+      
+
+            MyDatabaseFileEntities db = new MyDatabaseFileEntities();
+            List listContacts = new List();
+            ContactDetails contactDetails = new ContactDetails();
+
+            var ContactTable = db.Contacts;
+
+            foreach (var contact in ContactTable)
+            {
+                //this.dataGridViewContact.Rows.Add(contact.Name, contact.Type);
+                listContacts.Add(contactDetails.Name = contact.Name, contactDetails.Type = contact.Type);
+
+            }
+
+
+           
+          
+
+
         }
     }
 }
+
