@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/21/2021 13:56:15
+-- Date Created: 04/22/2021 09:06:59
 -- Generated from EDMX file: C:\Users\admin\Downloads\CW2_W1830820\CW2_W1830820\DatabaseModel.edmx
 -- --------------------------------------------------
 
@@ -17,11 +17,23 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_ContactTransaction]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Transactions] DROP CONSTRAINT [FK_ContactTransaction];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[Contacts]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Contacts];
+GO
+IF OBJECT_ID(N'[dbo].[Transactions]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Transactions];
+GO
+IF OBJECT_ID(N'[dbo].[Events]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Events];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -49,9 +61,8 @@ GO
 CREATE TABLE [dbo].[Events] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [OccurrenceType] nvarchar(max)  NOT NULL,
-    [Type] nvarchar(max)  NOT NULL,
     [StartDate] datetime  NOT NULL,
-    [EndDate] datetime  NOT NULL,
+    [NumberOfAdditionalTimesRecurring] int  NOT NULL,
     [Description] nvarchar(max)  NOT NULL,
     [EventType] nvarchar(max)  NOT NULL
 );

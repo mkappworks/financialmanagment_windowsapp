@@ -7,19 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 
 namespace CW2_W1830820
 {
     public partial class ViewContactForm : Form
     {
+        public ContactDetails ContactDetailsData { get; set; }
+        private DBManager dbManager = new DBManager();
+
         public ViewContactForm()
         {
             InitializeComponent();
 
         }
-
-
 
         private void ViewContactLoad(object sender, EventArgs e)
         {
@@ -56,7 +58,14 @@ namespace CW2_W1830820
                 String selectType = (string)dataGridViewContact.Rows[e.RowIndex].Cells[1].Value;
                 String selectName = (string)dataGridViewContact.Rows[e.RowIndex].Cells[2].Value;
 
-                EditContactForm editContactForm = new EditContactForm(selectId, selectType, selectName);
+          
+                this.ContactDetailsData = new ContactDetails();
+                this.ContactDetailsData.Id = selectId;
+                this.ContactDetailsData.Type = selectType;
+                this.ContactDetailsData.Name = selectName;
+
+                         
+                EditContactForm editContactForm = new EditContactForm(ContactDetailsData.Id , ContactDetailsData.Type, ContactDetailsData.Name);
                 editContactForm.Activate();
                 editContactForm.ShowDialog();
 
@@ -76,6 +85,8 @@ namespace CW2_W1830820
 
                     ContactModel contactModel = new ContactModel();
                     contactModel.DeleteContact(selectId);
+
+                    MessageBox.Show("Successfully Deleted");
 
                     contactDetailsBindingSource.RemoveCurrent();
                 }

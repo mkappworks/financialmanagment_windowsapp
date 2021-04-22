@@ -7,12 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace CW2_W1830820
 {
     public partial class EditContactForm : Form
     {
+
         public ContactDetails ContactDetailsData { get; set; }
+     
+        private DBManager dbManager = new DBManager();
 
 
         public EditContactForm(int id, string type, string name)
@@ -43,14 +47,38 @@ namespace CW2_W1830820
 
             if (MessageBox.Show("Do you want to edit the selected contact?", "PFMS | Edit Contact", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                ContactModel contactModel = new ContactModel();
+
                 this.ContactDetailsData.Name = textName.Text;
-                Console.WriteLine(this.ContactDetailsData.Id + " " + this.ContactDetailsData.Name);
+
+                if (File.Exists(@"contacteditdata.xml"))
+                {
+                    this.dbManager.ReadXml(@"contacteditdata.xml");
+                }
+
+
+                DBManager.ContactHeaderRow row = this.dbManager.ContactHeader.NewContactHeaderRow(); ;
+
+
+                row.Name = this.ContactDetailsData.Name;
+                row.Type = this.ContactDetailsData.Type;
+
+                this.dbManager.ContactHeader.AddContactHeaderRow(row);
+                this.dbManager.AcceptChanges();
+
+                this.dbManager.WriteXml(@"contacteditdata.xml");
+
+
+                ContactModel contactModel = new ContactModel();
+                
+            
                 contactModel.EditContact(this.ContactDetailsData.Id, this.ContactDetailsData.Name);
 
+                this.dbManager.Reset();
+                File.Delete(@"contacteditdata.xml");
+
+                MessageBox.Show("Successfully Edited");
+
                 this.Close();
-
-
 
             }
 

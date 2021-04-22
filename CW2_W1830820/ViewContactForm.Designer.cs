@@ -54,10 +54,11 @@ namespace CW2_W1830820
             this.Edit,
             this.Delete});
             this.dataGridViewContact.DataSource = this.contactDetailsBindingSource;
-            this.dataGridViewContact.Location = new System.Drawing.Point(34, 29);
+            this.dataGridViewContact.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewContact.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewContact.Name = "dataGridViewContact";
             this.dataGridViewContact.ReadOnly = true;
-            this.dataGridViewContact.Size = new System.Drawing.Size(689, 199);
+            this.dataGridViewContact.Size = new System.Drawing.Size(519, 346);
             this.dataGridViewContact.TabIndex = 0;
             this.dataGridViewContact.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewContact_CellContentClick);
             // 
@@ -68,9 +69,11 @@ namespace CW2_W1830820
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.Frozen = true;
             this.idDataGridViewTextBoxColumn.HeaderText = "Id";
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Width = 50;
             // 
             // typeDataGridViewTextBoxColumn
             // 
@@ -78,13 +81,16 @@ namespace CW2_W1830820
             this.typeDataGridViewTextBoxColumn.HeaderText = "Type";
             this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
             this.typeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.typeDataGridViewTextBoxColumn.Width = 75;
             // 
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.FillWeight = 150F;
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Width = 200;
             // 
             // Edit
             // 
@@ -93,6 +99,7 @@ namespace CW2_W1830820
             this.Edit.ReadOnly = true;
             this.Edit.Text = "Edit";
             this.Edit.UseColumnTextForButtonValue = true;
+            this.Edit.Width = 75;
             // 
             // Delete
             // 
@@ -101,12 +108,13 @@ namespace CW2_W1830820
             this.Delete.ReadOnly = true;
             this.Delete.Text = "Delete";
             this.Delete.UseColumnTextForButtonValue = true;
+            this.Delete.Width = 75;
             // 
             // ViewContactForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(519, 346);
             this.Controls.Add(this.dataGridViewContact);
             this.Name = "ViewContactForm";
             this.Text = "ViewContactForm";
@@ -120,11 +128,11 @@ namespace CW2_W1830820
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridViewContact;
+        private System.Windows.Forms.BindingSource contactDetailsBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn Edit;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
-        private System.Windows.Forms.BindingSource contactDetailsBindingSource;
     }
 }

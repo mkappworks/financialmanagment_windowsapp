@@ -16,9 +16,8 @@ namespace CW2_W1830820
     {
         public int Id { get; set; }
         public string OccurrenceType { get; set; }
-        public string Type { get; set; }
         public System.DateTime StartDate { get; set; }
-        public System.DateTime EndDate { get; set; }
+        public int NumberOfAdditionalTimesRecurring { get; set; }
         public string Description { get; set; }
         public string EventType { get; set; }
     }
