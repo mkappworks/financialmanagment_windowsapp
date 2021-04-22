@@ -15,8 +15,9 @@ namespace CW2_W1830820
     public partial class InputContactForm : Form
 
     {
-        public ContactDetails ContactDetailsData { get; set; }
         private DBManager dbManager = new DBManager();
+        public ContactDetails ContactDetailsData { get; set; }
+        
 
         public InputContactForm()
         {
@@ -65,7 +66,7 @@ namespace CW2_W1830820
                 this.dbManager.WriteXml(@"contactinputdata.xml");
 
                 ContactModel contactModel = new ContactModel();
-                contactModel.SaveContact(this.ContactDetailsData.Type, this.ContactDetailsData.Name);
+                contactModel.SaveContact(this.ContactDetailsData);
 
                 this.dbManager.Reset();
                 File.Delete(@"contactinputdata.xml");

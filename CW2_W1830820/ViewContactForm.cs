@@ -25,11 +25,11 @@ namespace CW2_W1830820
 
         private void ViewContactLoad(object sender, EventArgs e)
         {
-            getData();
+            GetContactData();
 
         }
 
-        private void getData()
+        private void GetContactData()
         {
             this.dataGridViewContact.Rows.Clear();
 
@@ -69,7 +69,7 @@ namespace CW2_W1830820
                 editContactForm.Activate();
                 editContactForm.ShowDialog();
 
-                getData();
+                GetContactData();
 
 
             }

@@ -30,7 +30,7 @@ namespace CW2_W1830820
 
 
             this.dateTimePicker.Value = transactionModel.Date;
-            this.comboBoxContact.Text = transactionModel.Contact;
+           // this.comboBoxContact.Text = transactionModel.Contact;
             this.textBoxAmount.Text = transactionModel.Amount.ToString();
         }
 
@@ -58,7 +58,7 @@ namespace CW2_W1830820
             TransactionDetails transactionModel = new TransactionDetails();
             transactionModel.Date = date;
             transactionModel.Type = type;
-            transactionModel.Contact = contact;
+          //  transactionModel.Contact = contact;
             transactionModel.Amount = amount;
 
         }

@@ -116,6 +116,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DBManager.cs">
+      <DependentUpon>DBManager.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DBManager.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

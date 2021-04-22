@@ -62,6 +62,7 @@ namespace CW2_W1830820
             this.radioBtnIncome.TabIndex = 1;
             this.radioBtnIncome.Text = "Income";
             this.radioBtnIncome.UseVisualStyleBackColor = true;
+            this.radioBtnIncome.CheckedChanged += new System.EventHandler(this.radioBtnIncome_CheckedChanged);
             // 
             // radioBtnExpense
             // 
@@ -74,6 +75,7 @@ namespace CW2_W1830820
             this.radioBtnExpense.TabStop = true;
             this.radioBtnExpense.Text = "Expense";
             this.radioBtnExpense.UseVisualStyleBackColor = true;
+            this.radioBtnExpense.CheckedChanged += new System.EventHandler(this.radioBtnExpense_CheckedChanged);
             // 
             // btnSave
             // 
@@ -154,6 +156,7 @@ namespace CW2_W1830820
             this.comboBoxContact.Name = "comboBoxContact";
             this.comboBoxContact.Size = new System.Drawing.Size(191, 21);
             this.comboBoxContact.TabIndex = 15;
+            this.comboBoxContact.SelectedIndexChanged += new System.EventHandler(this.comboBoxContact_SelectedIndexChanged);
             // 
             // InputTransactionForm
             // 

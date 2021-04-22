@@ -13,13 +13,13 @@ namespace CW2_W1830820
     class ContactModel
     {
 
-        public void SaveContact(String type, String name)
+        public void SaveContact(ContactDetails contactDetails)
         {
             Contact contact = new Contact();
 
-            contact.Type = type;
+            contact.Type = contactDetails.Type;
 
-            contact.Name = name;
+            contact.Name = contactDetails.Name;
 
             MyDatabaseFileEntities db = new MyDatabaseFileEntities();
 

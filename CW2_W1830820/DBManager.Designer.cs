@@ -261,14 +261,6 @@ namespace CW2_W1830820 {
             base.Tables.Add(this.tableTransactionHeader);
             this.tableEventHeader = new EventHeaderDataTable();
             base.Tables.Add(this.tableEventHeader);
-            global::System.Data.ForeignKeyConstraint fkc;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_ContactHeader_TransactionHeader", new global::System.Data.DataColumn[] {
-                        this.tableContactHeader.ContactNoColumn}, new global::System.Data.DataColumn[] {
-                        this.tableTransactionHeader.FK_ContactNoColumn});
-            this.tableTransactionHeader.Constraints.Add(fkc);
-            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
-            fkc.DeleteRule = global::System.Data.Rule.None;
-            fkc.UpdateRule = global::System.Data.Rule.Cascade;
             this.relationFK_ContactHeader_TransactionHeader = new global::System.Data.DataRelation("FK_ContactHeader_TransactionHeader", new global::System.Data.DataColumn[] {
                         this.tableContactHeader.ContactNoColumn}, new global::System.Data.DataColumn[] {
                         this.tableTransactionHeader.FK_ContactNoColumn}, false);
