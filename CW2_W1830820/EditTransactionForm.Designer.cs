@@ -50,6 +50,7 @@ namespace CW2_W1830820
             this.comboBoxContact.Name = "comboBoxContact";
             this.comboBoxContact.Size = new System.Drawing.Size(191, 21);
             this.comboBoxContact.TabIndex = 24;
+            this.comboBoxContact.SelectedIndexChanged += new System.EventHandler(this.comboBoxContact_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -89,6 +90,7 @@ namespace CW2_W1830820
             // 
             this.groupBox1.Controls.Add(this.radioBtnIncome);
             this.groupBox1.Controls.Add(this.radioBtnExpense);
+            this.groupBox1.Enabled = false;
             this.groupBox1.Location = new System.Drawing.Point(125, 60);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(191, 46);

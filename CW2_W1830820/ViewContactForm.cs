@@ -15,8 +15,7 @@ namespace CW2_W1830820
     public partial class ViewContactForm : Form
     {
         public ContactDetails ContactDetailsData { get; set; }
-        private DBManager dbManager = new DBManager();
-
+      
         public ViewContactForm()
         {
             InitializeComponent();

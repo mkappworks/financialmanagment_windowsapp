@@ -35,22 +35,20 @@ namespace CW2_W1830820
         }
 
         public void EditContact(int id , String name) {
-            Contact contact = new Contact();
-
+           
             MyDatabaseFileEntities db = new MyDatabaseFileEntities();
 
-            var contactItem = db.Contacts.Find(id);
-            contactItem.Name = name;
+            Contact contact = db.Contacts.Find(id);
+            contact.Name = name;
             db.SaveChanges();
         }
 
         public void DeleteContact(int id) {
-            Contact contact = new Contact();
-          
+                     
             MyDatabaseFileEntities db = new MyDatabaseFileEntities();
 
-            var contactItem = db.Contacts.Find(id);
-            db.Contacts.Remove(contactItem);
+            Contact contact = db.Contacts.Find(id);
+            db.Contacts.Remove(contact);
             db.SaveChanges();
         }
     }

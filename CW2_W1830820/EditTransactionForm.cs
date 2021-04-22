@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,54 +13,140 @@ namespace CW2_W1830820
 {
     public partial class EditTransactionForm : Form
     {
-        public EditTransactionForm()
+        private DBManager dbManager = new DBManager();
+
+        public TransactionDetails TransactionDetailsData { get; set; }
+
+        private List<ContactDetails> listOfContact = new List<ContactDetails>();
+
+        private int currentSelectedContactId;
+
+        public EditTransactionForm(TransactionDetails transactionDetails)
         {
             InitializeComponent();
-           TransactionDetails transactionModel = new TransactionDetails();
 
-            /*
-            if (transactionModel.Type == 1)
+            GetContactData(transactionDetails.Type);
+
+            this.TransactionDetailsData = new TransactionDetails();
+
+            this.TransactionDetailsData.Id = transactionDetails.Id;
+            this.TransactionDetailsData.Date = transactionDetails.Date;
+            this.TransactionDetailsData.Type = transactionDetails.Type;
+            this.TransactionDetailsData.Amount = transactionDetails.Amount;
+
+            this.dateTimePicker.Value = this.TransactionDetailsData.Date;
+
+            if (this.TransactionDetailsData.Type == "Expense")
             {
                 this.radioBtnExpense.Checked = true;
             }
-            else if (transactionModel.Type == 2)
+            else if (this.TransactionDetailsData.Type == "Income")
             {
                 this.radioBtnIncome.Checked = true;
             }
-            */
 
 
-            this.dateTimePicker.Value = transactionModel.Date;
-           // this.comboBoxContact.Text = transactionModel.Contact;
-            this.textBoxAmount.Text = transactionModel.Amount.ToString();
+
+            this.comboBoxContact.SelectedItem = this.TransactionDetailsData.ContactName;
+
+            this.textBoxAmount.Text = this.TransactionDetailsData.Amount.ToString();
+
+
+        }
+
+        private void GetContactData(string type)
+        {
+
+            ContactModel contactModel = new ContactModel();
+            var contactTable = contactModel.GetContact();
+
+            if (type == "Expense")
+            {
+                foreach (var record in contactTable) if (record.Type == "Payee")
+                    {
+                        comboBoxContact.Items.Add(record.Name);
+                        this.listOfContact.Add(new ContactDetails()
+                        {
+                            Id = record.Id,
+                            Type = record.Type,
+                            Name = record.Name
+
+                        });
+                    }
+            }
+            else
+            {
+                foreach (var record in contactTable) if (record.Type == "Payer")
+                    {
+                        comboBoxContact.Items.Add(record.Name);
+                        this.listOfContact.Add(new ContactDetails()
+                        {
+                            Id = record.Id,
+                            Type = record.Type,
+                            Name = record.Name
+
+                        });
+                    }
+
+            }
+
+
+
+
         }
 
         private void EditTransaction(object sender, EventArgs e)
         {
 
-           // string typeIndex = "Income";
-            /*
+            if (MessageBox.Show("Do you want to edit the selected transaction?", "PFMS | Edit Transaction", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
 
-            if (this.radioBtnExpense.Checked == true)
-            {
-                typeIndex = 1;
+                this.TransactionDetailsData.Date = this.dateTimePicker.Value;
+                this.TransactionDetailsData.ContactId = this.currentSelectedContactId;
+                this.TransactionDetailsData.Amount = double.Parse(this.textBoxAmount.Text);
+
+
+                if (File.Exists(@"transactioneditdata.xml"))
+                {
+                    this.dbManager.ReadXml(@"transactioneditdata.xml");
+                }
+
+
+                DBManager.TransactionHeaderRow row = this.dbManager.TransactionHeader.NewTransactionHeaderRow(); ;
+
+
+                row.Date = this.TransactionDetailsData.Date;
+                row.FK_ContactNo = this.TransactionDetailsData.ContactId;
+                row.Amount = this.TransactionDetailsData.Amount;
+
+
+
+                this.dbManager.TransactionHeader.AddTransactionHeaderRow(row);
+                this.dbManager.AcceptChanges();
+
+                this.dbManager.WriteXml(@"transactioneditdata.xml");
+
+                TransactionModel transactionModel = new TransactionModel();
+
+                transactionModel.EditTransaction(TransactionDetailsData);
+
+
+
+                this.dbManager.Reset();
+                File.Delete(@"transactioneditdata.xml");
+
+                MessageBox.Show("Successfully Edited");
+
+                this.Close();
+
             }
-            else if (this.radioBtnIncome.Checked == true)
-            {
-                typeIndex = 2;
-            }
-            */
-           // this.TransactionManager(this.dateTimePicker.Value, typeIndex, this.comboBoxContact.Text, double.Parse(this.textBoxAmount.Text));
         }
 
-
-        private void TransactionManager(DateTime date, string type, string contact, double amount)
+        private void comboBoxContact_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TransactionDetails transactionModel = new TransactionDetails();
-            transactionModel.Date = date;
-            transactionModel.Type = type;
-          //  transactionModel.Contact = contact;
-            transactionModel.Amount = amount;
+            int comboBoxItemIndex = comboBoxContact.SelectedIndex;
+
+            this.currentSelectedContactId = listOfContact[comboBoxItemIndex].Id;
 
         }
     }

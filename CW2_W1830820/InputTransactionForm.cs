@@ -152,7 +152,7 @@ namespace CW2_W1830820
 
         }
 
-        private void GetSelectedContactId(string name) { }
+       
 
         private void comboBoxContact_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -169,8 +169,6 @@ namespace CW2_W1830820
                 this.currentSelectedContactId = listOfPayer[comboBoxItemIndex].Id;
 
             }
-
-
 
         }
 

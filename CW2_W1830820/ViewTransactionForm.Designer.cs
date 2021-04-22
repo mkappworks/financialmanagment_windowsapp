@@ -30,73 +30,115 @@ namespace CW2_W1830820
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Contact = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTransaction = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contactNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.transactionDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.transactionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTransaction)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionDetailsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dataGridViewTransaction
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Date,
-            this.Type,
-            this.Contact,
-            this.Amount,
+            this.dataGridViewTransaction.AllowUserToAddRows = false;
+            this.dataGridViewTransaction.AllowUserToDeleteRows = false;
+            this.dataGridViewTransaction.AutoGenerateColumns = false;
+            this.dataGridViewTransaction.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTransaction.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.dateDataGridViewTextBoxColumn,
+            this.typeDataGridViewTextBoxColumn,
+            this.contactNameDataGridViewTextBoxColumn,
+            this.amountDataGridViewTextBoxColumn,
             this.Edit,
             this.Delete});
-            this.dataGridView1.Location = new System.Drawing.Point(31, 37);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(646, 206);
-            this.dataGridView1.TabIndex = 0;
+            this.dataGridViewTransaction.DataSource = this.transactionDetailsBindingSource;
+            this.dataGridViewTransaction.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewTransaction.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewTransaction.Name = "dataGridViewTransaction";
+            this.dataGridViewTransaction.ReadOnly = true;
+            this.dataGridViewTransaction.Size = new System.Drawing.Size(743, 463);
+            this.dataGridViewTransaction.TabIndex = 0;
+            this.dataGridViewTransaction.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // Date
+            // Id
             // 
-            this.Date.HeaderText = "Date";
-            this.Date.Name = "Date";
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Width = 50;
             // 
-            // Type
+            // dateDataGridViewTextBoxColumn
             // 
-            this.Type.HeaderText = "Type";
-            this.Type.Name = "Type";
+            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
+            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
+            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
+            this.dateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dateDataGridViewTextBoxColumn.Width = 150;
             // 
-            // Contact
+            // typeDataGridViewTextBoxColumn
             // 
-            this.Contact.HeaderText = "Contact";
-            this.Contact.Name = "Contact";
+            this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
+            this.typeDataGridViewTextBoxColumn.HeaderText = "Type";
+            this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
+            this.typeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // Amount
+            // contactNameDataGridViewTextBoxColumn
             // 
-            this.Amount.HeaderText = "Amount";
-            this.Amount.Name = "Amount";
+            this.contactNameDataGridViewTextBoxColumn.DataPropertyName = "ContactName";
+            this.contactNameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.contactNameDataGridViewTextBoxColumn.Name = "contactNameDataGridViewTextBoxColumn";
+            this.contactNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.contactNameDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // amountDataGridViewTextBoxColumn
+            // 
+            this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
+            this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
+            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
+            this.amountDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // Edit
             // 
             this.Edit.HeaderText = "Edit";
             this.Edit.Name = "Edit";
+            this.Edit.ReadOnly = true;
+            this.Edit.Text = "Edit";
+            this.Edit.UseColumnTextForButtonValue = true;
+            this.Edit.Width = 75;
             // 
             // Delete
             // 
             this.Delete.HeaderText = "Delete";
             this.Delete.Name = "Delete";
+            this.Delete.ReadOnly = true;
+            this.Delete.Text = "Delete";
+            this.Delete.UseColumnTextForButtonValue = true;
+            this.Delete.Width = 75;
+            // 
+            // transactionDetailsBindingSource
+            // 
+            this.transactionDetailsBindingSource.DataSource = typeof(CW2_W1830820.TransactionDetails);
             // 
             // ViewTransactionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(743, 463);
+            this.Controls.Add(this.dataGridViewTransaction);
             this.Name = "ViewTransactionForm";
             this.Text = "ViewTransactionForm";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.ViewTransactionForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTransaction)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionDetailsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -104,14 +146,15 @@ namespace CW2_W1830820
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Type;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Contact;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
+        private System.Windows.Forms.DataGridView dataGridViewTransaction;
+        private System.Windows.Forms.BindingSource transactionBindingSource;
+        private System.Windows.Forms.BindingSource transactionDetailsBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn contactNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn Edit;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
-        private System.Windows.Forms.BindingSource transactionBindingSource;
-       
     }
 }
