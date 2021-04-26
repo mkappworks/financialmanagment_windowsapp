@@ -52,6 +52,7 @@ namespace CW2_W1830820
             this.btnPredict.TabIndex = 34;
             this.btnPredict.Text = "Predict";
             this.btnPredict.UseVisualStyleBackColor = false;
+            this.btnPredict.Click += new System.EventHandler(this.btnPredict_Click);
             // 
             // dateTimePickerDate
             // 
