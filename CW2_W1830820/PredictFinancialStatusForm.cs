@@ -24,6 +24,8 @@ namespace CW2_W1830820
 
         private void GetTransactionData()
         {
+            textBoxFinancialStatus.Text = string.Empty;
+
             TransactionModel transactionModel = new TransactionModel();
             var transactionTable = transactionModel.GetTransaction();
             List<TransactionDetails> filteredTransactionList = new List<TransactionDetails>();
@@ -151,11 +153,27 @@ namespace CW2_W1830820
             double slopeNumerator = 0;
             double slopeDenominator = 0;
 
-            foreach(var item in updateCombinedTransactionList)
+            foreach (var item in updateCombinedTransactionList)
             {
-
+                double numeratorItemValue = (item[1] - meanNetAmount)(item[0] - meanDays);
+                double denominateItemValue = (item[0] - meanNetAmount) ^ 2;
+                slopeNumerator += numeratorItemValue;
+                slopeDenominator += denominateItemValue;
             }
 
+            double slope = slopeNumerator / slopeDenominator;
+
+            //Calculate y-intercept 
+
+            double yIntercept = meanNetAmount - slope * meanDays;
+
+            //Get the  futureDate from dateTimePickerDate in days;
+            double futureDateinDays = (futureDate - combinedTransactionList[0].Date).TotalDays + 1;
+
+            //Calculate the netAmount at the futureDate from dateTimePickerDate
+            double futureNetAmount = slope * futureDateinDays + yIntercept;
+
+            this.textBoxFinancialStatus.Text = futureNetAmount.ToString();
 
         }
 
