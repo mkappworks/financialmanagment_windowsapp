@@ -9,6 +9,7 @@ namespace CW2_W1830820
 {
     class EventModel
     {
+
         public void SaveEvent(EventDetails eventDetails)
         {
             Event event = new Event();
@@ -19,12 +20,12 @@ namespace CW2_W1830820
         event.NumberOfAdditionalTimesRecurring = eventDetails.NumberOfAdditionalTimesRecurring;
         event.Description = eventDetails.Description;
         event.EventType = eventDetails.EventType;
+
         MyDatabaseFileEntities db = new MyDatabaseFileEntities();
 
         db.Events.Add(event);
         db.SaveChanges();
         }
-
 
     public dynamic GetEvent()
     {
@@ -58,5 +59,5 @@ namespace CW2_W1830820
         db.SaveChanges();
     }
 }
-}
+
 
