@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace CW2_W1830820
 {
-   public class EventDetails
+    public class EventDetails
     {
+        public int Id{get;set;}
         public string EventOccurrence { get; set; }
-       // public string EventOccurrenceType { get; set; }
         public DateTime StartDate { get; set; }
         public int NumberOfAdditionalTimesRecurring { get; set; }
-        public String Description { get; set; }
+        public string Description { get; set; }
         public string EventType { get; set; }
     }
 }
