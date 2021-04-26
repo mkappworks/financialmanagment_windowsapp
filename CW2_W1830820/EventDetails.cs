@@ -9,7 +9,7 @@ namespace CW2_W1830820
     public class EventDetails
     {
         public int Id{get;set;}
-        public string EventOccurrence { get; set; }
+        public string OccurrenceType { get; set; }
         public DateTime StartDate { get; set; }
         public int NumberOfAdditionalTimesRecurring { get; set; }
         public string Description { get; set; }
