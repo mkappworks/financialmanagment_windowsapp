@@ -63,11 +63,11 @@ namespace CW2_W1830820
                 }
             }
 
-            //Get a list with NetAmount per a given date in the sortedTransactionDateTimeList
+            //Get a list with NetAmount per a given date in the sortedTransactionDateTimeList to  combinedTransactionList
 
             DateTime minDateFromSortedTransactionList = sortedTransactionDateTimeList[0];
             DateTime currentLoopDate = minDateFromSortedTransactionList;
-            Double netAmountPerDate = 0;
+            double netAmountPerDate = 0;
             int sortedTransactionDateTimeListIndex = 0;
 
             List<TransactionDetails> combinedTransactionList = new List<TransactionDetails>();
@@ -87,7 +87,7 @@ namespace CW2_W1830820
                     netAmountPerDate = 0;
                 }
 
-                Double transactionAmount = 0;
+                double transactionAmount = 0;
                 if (record.Type == "Income")
                 {
                     transactionAmount = record.Amount;
@@ -109,7 +109,52 @@ namespace CW2_W1830820
                 }
             }
 
+            //Get a list with day and netAmount per a given date in the combinedTransactionList to updateCombinedTransactionList
+            List<dynamic> updateCombinedTransactionList = new List<dynamic>();
+            double currentDay = 1;
 
+            for (int i = 0; i < combinedTransactionList.Count; i++)
+            {
+                List<dynamic> currentItemList = new List<dynamic>();
+                currentItemList.Add(currentDay);
+                currentItemList.Add(combinedTransactionList[0].Amount);
+
+                updateCombinedTransactionList.Add(currentItemList);
+
+                if (i != combinedTransactionList.Count - 1)
+                {
+                    currentDay = (combinedTransactionList[i + 1].Date - combinedTransactionList[i].Date).TotalDays + currentDay;
+                }
+
+            }
+
+            //Calculate the slope and y-intercept of the Line of Best Fit (Least Square Method) of the datavalues in  updateCombinedTransactionList
+
+            //Calculate the mean of days and netAmount
+
+            double meanDays = 0;
+            double meanNetAmount = 0;
+            double totalDays = 0;
+            double totalNetAmount = 0;
+            double numberofItemsInUpdateCombinedTransactionList = updateCombinedTransactionList.Count;
+
+            foreach (var item in updateCombinedTransactionList)
+            {
+                totalDays += item[0];
+                totalNetAmount += item[1];
+            }
+
+            meanDays = totalDays / numberofItemsInUpdateCombinedTransactionList;
+            meanNetAmount = totalNetAmount / numberofItemsInUpdateCombinedTransactionList;
+
+            //Calculate the slope
+            double slopeNumerator = 0;
+            double slopeDenominator = 0;
+
+            foreach(var item in updateCombinedTransactionList)
+            {
+
+            }
 
 
         }
