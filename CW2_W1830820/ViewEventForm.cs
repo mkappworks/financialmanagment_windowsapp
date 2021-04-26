@@ -42,7 +42,7 @@ namespace CW2_W1830820
 
                 this.EventDetailsData = new EventDetails();
                 this.EventDetailsData.Id = selectId;
-                this.EventDetailsData.EventOccurrence = selectEventOccurrence;
+                this.EventDetailsData.OccurrenceType = selectEventOccurrence;
                 this.EventDetailsData.StartDate = selectStartDate;
                 this.EventDetailsData.NumberOfAdditionalTimesRecurring = selectNumberOfAdditionalTimesRecurring;
                 this.EventDetailsData.Description = selectDescription;
