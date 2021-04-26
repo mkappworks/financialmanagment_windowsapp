@@ -12,9 +12,14 @@ namespace CW2_W1830820
 {
     public partial class EditEventForm : Form
     {
-        public EditEventForm()
+        public EditEventForm(EventDetails eventDetails)
         {
             InitializeComponent();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
