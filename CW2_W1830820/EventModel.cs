@@ -9,10 +9,37 @@ namespace CW2_W1830820
 {
     class EventModel
     {
-
         public void SaveEvent(EventDetails eventDetails)
         {
-            Event event = new Event();
+
+        }
+
+
+        public dynamic GetEvent()
+        {
+            MyDatabaseFileEntities db = new MyDatabaseFileEntities();
+
+            return db.Events;
+        }
+
+        public void DeleteEvent(int id)
+        {
+            MyDatabaseFileEntities db = new MyDatabaseFileEntities();
+
+            Event event = db.Events.Find(id);
+            db.Events.Remove(event);
+            db.SaveChanges();
+        }
+
+
+}
+}
+
+/*
+
+public void SaveEvent(EventDetails eventDetails)
+{
+    Event event = new Event();
 
 
         event.EventOccurrence = eventDetails.EventOccurrence;
@@ -21,25 +48,18 @@ namespace CW2_W1830820
         event.Description = eventDetails.Description;
         event.EventType = eventDetails.EventType;
 
-        MyDatabaseFileEntities db = new MyDatabaseFileEntities();
+    MyDatabaseFileEntities db = new MyDatabaseFileEntities();
 
-        db.Events.Add(event);
-        db.SaveChanges();
-        }
+    db.Events.Add(event);
+    db.SaveChanges();
+}
 
-    public dynamic GetEvent()
-    {
-        MyDatabaseFileEntities db = new MyDatabaseFileEntities();
+public void EditEvent(EventDetails eventDetails)
+{
 
-        return db.Events;
-    }
+    MyDatabaseFileEntities db = new MyDatabaseFileEntities();
 
-    public void EditEvent(EventDetails eventDetails)
-    {
-
-        MyDatabaseFileEntities db = new MyDatabaseFileEntities();
-
-        Event event = db.Events.Find(eventDetails.Id);
+    Event event = db.Events.Find(eventDetails.Id);
         
         event.EventOccurrence = eventDetails.EventOccurrence;
         event.StartDate = eventDetails.StartDate;
@@ -47,17 +67,10 @@ namespace CW2_W1830820
         event.Description = eventDetails.Description;
         event.EventType = eventDetails.EventType;
 
-        db.SaveChanges();
-    }
-
-    public void DeleteEvent(int id)
-    {
-        MyDatabaseFileEntities db = new MyDatabaseFileEntities();
-
-        Event event = db.Events.Find(id);
-        db.Events.Remove(event);
-        db.SaveChanges();
-    }
+    db.SaveChanges();
 }
 
 
+
+
+*/
