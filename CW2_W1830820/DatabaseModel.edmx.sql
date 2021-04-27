@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/22/2021 09:06:59
+-- Date Created: 04/27/2021 15:09:20
 -- Generated from EDMX file: C:\Users\admin\Downloads\CW2_W1830820\CW2_W1830820\DatabaseModel.edmx
 -- --------------------------------------------------
 
@@ -62,7 +62,7 @@ CREATE TABLE [dbo].[Events] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [OccurrenceType] nvarchar(max)  NOT NULL,
     [StartDate] datetime  NOT NULL,
-    [NumberOfAdditionalTimesRecurring] int  NOT NULL,
+    [AdditionalRecurring] int  NOT NULL,
     [Description] nvarchar(max)  NOT NULL,
     [EventType] nvarchar(max)  NOT NULL
 );

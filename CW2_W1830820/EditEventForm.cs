@@ -29,13 +29,13 @@ namespace CW2_W1830820
             this.EventDetailsData.Id = eventDetails.Id;
             this.EventDetailsData.OccurrenceType = eventDetails.OccurrenceType;
             this.EventDetailsData.StartDate = eventDetails.StartDate;
-            this.EventDetailsData.NumberOfAdditionalTimesRecurring = eventDetails.NumberOfAdditionalTimesRecurring;
+            this.EventDetailsData.AdditionalRecurring = eventDetails.AdditionalRecurring;
             this.EventDetailsData.Description = eventDetails.Description;
             this.EventDetailsData.EventType = eventDetails.EventType;
 
-            this.comboBoxOccurrenceType.SelectedItem = EventDetailsData.OccurrenceType;
+            this.comboBoxOccurrenceType.Text = EventDetailsData.OccurrenceType;
             this.dateTimePickerStartDate.Value = EventDetailsData.StartDate;
-            this.textBoxAdditionalRecurring.Text = EventDetailsData.NumberOfAdditionalTimesRecurring.ToString();
+            this.textBoxAdditionalRecurring.Text = EventDetailsData.AdditionalRecurring.ToString();
             this.textBoxDescription.Text = EventDetailsData.Description;
 
 
@@ -55,9 +55,9 @@ namespace CW2_W1830820
             if (MessageBox.Show("Do you want to edit the selected event?", "PFMS | Edit Event", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
 
-                this.EventDetailsData.OccurrenceType = (string)this.comboBoxOccurrenceType.SelectedItem;
+                this.EventDetailsData.OccurrenceType = (string)this.comboBoxOccurrenceType.Text;
                 this.EventDetailsData.StartDate = this.dateTimePickerStartDate.Value;
-                this.EventDetailsData.NumberOfAdditionalTimesRecurring = int.Parse(this.textBoxAdditionalRecurring.Text);
+                this.EventDetailsData.AdditionalRecurring = int.Parse(this.textBoxAdditionalRecurring.Text);
                 this.EventDetailsData.Description = this.textBoxDescription.Text;
 
                 if (this.radioBtnAppointment.Checked)
@@ -79,7 +79,7 @@ namespace CW2_W1830820
 
                 row.OccurrenceType = this.EventDetailsData.OccurrenceType;
                 row.StartDate = this.EventDetailsData.StartDate;
-                row.NumberOfAdditionalTimesRecurring_ = this.EventDetailsData.NumberOfAdditionalTimesRecurring;
+                row.AdditionalRecurring_ = this.EventDetailsData.AdditionalRecurring;
                 row.Description = this.EventDetailsData.Description;
                 row.EventType = this.EventDetailsData.EventType;
 

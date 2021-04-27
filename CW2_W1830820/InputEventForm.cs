@@ -27,9 +27,9 @@ namespace CW2_W1830820
             if (MessageBox.Show("Do you want to save the new event?", "PFMS | Save Event", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
 
-                this.EventDetailsData.OccurrenceType = (string)this.comboBoxOccurrenceType.SelectedItem;
+                this.EventDetailsData.OccurrenceType = this.comboBoxOccurrenceType.Text;
                 this.EventDetailsData.StartDate = this.dateTimePickerStartDate.Value;
-                this.EventDetailsData.NumberOfAdditionalTimesRecurring = int.Parse(this.textBoxAdditionalRecurring.Text);
+                this.EventDetailsData.AdditionalRecurring = int.Parse(this.textBoxAdditionalRecurring.Text);
                 this.EventDetailsData.Description = this.textBoxDescription.Text;
 
                 if (this.radioBtnAppointment.Checked)
@@ -51,7 +51,7 @@ namespace CW2_W1830820
 
                 row.OccurrenceType = this.EventDetailsData.OccurrenceType;
                 row.StartDate = this.EventDetailsData.StartDate;
-                row.NumberOfAdditionalTimesRecurring_ = this.EventDetailsData.NumberOfAdditionalTimesRecurring;
+                row.AdditionalRecurring_ = this.EventDetailsData.AdditionalRecurring;
                 row.Description = this.EventDetailsData.Description;
                 row.EventType = this.EventDetailsData.EventType;
 

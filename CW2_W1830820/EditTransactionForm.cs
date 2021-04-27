@@ -47,7 +47,7 @@ namespace CW2_W1830820
 
 
 
-            this.comboBoxContact.SelectedItem = this.TransactionDetailsData.ContactName;
+            this.comboBoxContact.Text= this.TransactionDetailsData.ContactName;
 
             this.textBoxAmount.Text = this.TransactionDetailsData.Amount.ToString();
 
@@ -126,7 +126,7 @@ namespace CW2_W1830820
 
                 this.dbManager.WriteXml(@"transactioneditdata.xml");
 
-                TransactionModel transactionModel = new TransactionModel();
+                Eventt transactionModel = new Eventt();
 
                 transactionModel.EditTransaction(TransactionDetailsData);
 

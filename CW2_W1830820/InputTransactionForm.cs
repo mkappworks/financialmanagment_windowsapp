@@ -134,7 +134,7 @@ namespace CW2_W1830820
 
                 this.dbManager.WriteXml(@"transactioninputdata.xml");
 
-                TransactionModel transactionModel = new TransactionModel();
+                Eventt transactionModel = new Eventt();
                 transactionModel.SaveTransaction(this.TransactionDetailsData);
 
 

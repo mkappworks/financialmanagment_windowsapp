@@ -36,13 +36,13 @@ namespace CW2_W1830820
             this.label1 = new System.Windows.Forms.Label();
             this.btnGenerateReport = new System.Windows.Forms.Button();
             this.dataGridViewTransaction = new System.Windows.Forms.DataGridView();
-            this.transactionDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contactIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contactNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.transactionDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTransaction)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transactionDetailsBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -113,15 +113,11 @@ namespace CW2_W1830820
             this.contactNameDataGridViewTextBoxColumn,
             this.amountDataGridViewTextBoxColumn});
             this.dataGridViewTransaction.DataSource = this.transactionDetailsBindingSource;
-            this.dataGridViewTransaction.Location = new System.Drawing.Point(12, 202);
+            this.dataGridViewTransaction.Location = new System.Drawing.Point(23, 217);
             this.dataGridViewTransaction.Name = "dataGridViewTransaction";
             this.dataGridViewTransaction.ReadOnly = true;
             this.dataGridViewTransaction.Size = new System.Drawing.Size(640, 194);
             this.dataGridViewTransaction.TabIndex = 30;
-            // 
-            // transactionDetailsBindingSource
-            // 
-            this.transactionDetailsBindingSource.DataSource = typeof(CW2_W1830820.TransactionDetails);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -164,6 +160,10 @@ namespace CW2_W1830820
             this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
             this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
             this.amountDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // transactionDetailsBindingSource
+            // 
+            this.transactionDetailsBindingSource.DataSource = typeof(CW2_W1830820.TransactionDetails);
             // 
             // GenerateTransactionReportForm
             // 

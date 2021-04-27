@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace CW2_W1830820
 {
-    class TransactionModel
+    class Eventt
     {
 
         public void SaveTransaction(TransactionDetails transactionDetails)
         {
             Transaction transaction = new Transaction();
+
             transaction.Date = transactionDetails.Date;
             transaction.Type = transactionDetails.Type;
             transaction.ContactId = transactionDetails.ContactId;

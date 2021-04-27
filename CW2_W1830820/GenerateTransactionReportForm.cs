@@ -27,7 +27,7 @@ namespace CW2_W1830820
         {
             this.dataGridViewTransaction.Rows.Clear();
 
-            TransactionModel transactionModel = new TransactionModel();
+            Eventt transactionModel = new Eventt();
             var transactionTable = transactionModel.GetTransaction();
 
             ContactModel contactModel = new ContactModel();
@@ -35,7 +35,7 @@ namespace CW2_W1830820
 
             foreach (var transaction in transactionTable)
             {
-                if (this.dateTimePickerStartDate.Value.Date <= transaction.Date.Date <= this.dateTimePickerEndDate.Value.Date)
+                if (this.dateTimePickerStartDate.Value.Date <= transaction.Date.Date  && transaction.Date.Date <= this.dateTimePickerEndDate.Value.Date)
                 {
                     this.transactionDetailsBindingSource.Add(new TransactionDetails()
 

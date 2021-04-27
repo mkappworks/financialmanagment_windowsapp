@@ -969,7 +969,7 @@ namespace CW2_W1830820 {
             
             private global::System.Data.DataColumn columnStartDate;
             
-            private global::System.Data.DataColumn columnNumberOfAdditionalTimesRecurring_;
+            private global::System.Data.DataColumn columnAdditionalRecurring_;
             
             private global::System.Data.DataColumn columnDescription;
             
@@ -1034,9 +1034,9 @@ namespace CW2_W1830820 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn NumberOfAdditionalTimesRecurring_Column {
+            public global::System.Data.DataColumn AdditionalRecurring_Column {
                 get {
-                    return this.columnNumberOfAdditionalTimesRecurring_;
+                    return this.columnAdditionalRecurring_;
                 }
             }
             
@@ -1093,13 +1093,13 @@ namespace CW2_W1830820 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public EventHeaderRow AddEventHeaderRow(string OccurrenceType, System.DateTime StartDate, int NumberOfAdditionalTimesRecurring_, string Description, string EventType) {
+            public EventHeaderRow AddEventHeaderRow(string OccurrenceType, System.DateTime StartDate, int AdditionalRecurring_, string Description, string EventType) {
                 EventHeaderRow rowEventHeaderRow = ((EventHeaderRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         OccurrenceType,
                         StartDate,
-                        NumberOfAdditionalTimesRecurring_,
+                        AdditionalRecurring_,
                         Description,
                         EventType};
                 rowEventHeaderRow.ItemArray = columnValuesArray;
@@ -1134,7 +1134,7 @@ namespace CW2_W1830820 {
                 this.columnEventNo = base.Columns["EventNo"];
                 this.columnOccurrenceType = base.Columns["OccurrenceType"];
                 this.columnStartDate = base.Columns["StartDate"];
-                this.columnNumberOfAdditionalTimesRecurring_ = base.Columns["NumberOfAdditionalTimesRecurring "];
+                this.columnAdditionalRecurring_ = base.Columns["AdditionalRecurring "];
                 this.columnDescription = base.Columns["Description"];
                 this.columnEventType = base.Columns["EventType"];
             }
@@ -1148,8 +1148,8 @@ namespace CW2_W1830820 {
                 base.Columns.Add(this.columnOccurrenceType);
                 this.columnStartDate = new global::System.Data.DataColumn("StartDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnStartDate);
-                this.columnNumberOfAdditionalTimesRecurring_ = new global::System.Data.DataColumn("NumberOfAdditionalTimesRecurring ", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNumberOfAdditionalTimesRecurring_);
+                this.columnAdditionalRecurring_ = new global::System.Data.DataColumn("AdditionalRecurring ", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAdditionalRecurring_);
                 this.columnDescription = new global::System.Data.DataColumn("Description", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDescription);
                 this.columnEventType = new global::System.Data.DataColumn("EventType", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1587,18 +1587,17 @@ namespace CW2_W1830820 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int NumberOfAdditionalTimesRecurring_ {
+            public int AdditionalRecurring_ {
                 get {
                     try {
-                        return ((int)(this[this.tableEventHeader.NumberOfAdditionalTimesRecurring_Column]));
+                        return ((int)(this[this.tableEventHeader.AdditionalRecurring_Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'NumberOfAdditionalTimesRecurring \' in table \'EventHeader\' i" +
-                                "s DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'AdditionalRecurring \' in table \'EventHeader\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableEventHeader.NumberOfAdditionalTimesRecurring_Column] = value;
+                    this[this.tableEventHeader.AdditionalRecurring_Column] = value;
                 }
             }
             
@@ -1660,14 +1659,14 @@ namespace CW2_W1830820 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsNumberOfAdditionalTimesRecurring_Null() {
-                return this.IsNull(this.tableEventHeader.NumberOfAdditionalTimesRecurring_Column);
+            public bool IsAdditionalRecurring_Null() {
+                return this.IsNull(this.tableEventHeader.AdditionalRecurring_Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetNumberOfAdditionalTimesRecurring_Null() {
-                this[this.tableEventHeader.NumberOfAdditionalTimesRecurring_Column] = global::System.Convert.DBNull;
+            public void SetAdditionalRecurring_Null() {
+                this[this.tableEventHeader.AdditionalRecurring_Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

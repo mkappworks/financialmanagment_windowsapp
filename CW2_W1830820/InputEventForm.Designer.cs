@@ -83,6 +83,11 @@ namespace CW2_W1830820
             // comboBoxOccurrenceType
             // 
             this.comboBoxOccurrenceType.FormattingEnabled = true;
+            this.comboBoxOccurrenceType.Items.AddRange(new object[] {
+            "One-Off",
+            "Daily",
+            "Weekly",
+            "Monthly"});
             this.comboBoxOccurrenceType.Location = new System.Drawing.Point(218, 41);
             this.comboBoxOccurrenceType.Name = "comboBoxOccurrenceType";
             this.comboBoxOccurrenceType.Size = new System.Drawing.Size(191, 21);

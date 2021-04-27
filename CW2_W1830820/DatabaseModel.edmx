@@ -39,7 +39,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="OccurrenceType" Type="nvarchar(max)" Nullable="false" />
     <Property Name="StartDate" Type="datetime" Nullable="false" />
-    <Property Name="NumberOfAdditionalTimesRecurring" Type="int" Nullable="false" />
+    <Property Name="AdditionalRecurring" Type="int" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
     <Property Name="EventType" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
@@ -62,11 +62,11 @@
         <EntityContainer Name="MyDatabaseFileEntities" annotation:LazyLoadingEnabled="true" >
           <EntitySet Name="Contacts" EntityType="MyDatabaseFileModel.Contact" />
           <EntitySet Name="Transactions" EntityType="MyDatabaseFileModel.Transaction" />
-          <EntitySet Name="Events" EntityType="MyDatabaseFileModel.Event" />
           <AssociationSet Name="ContactTransaction" Association="MyDatabaseFileModel.ContactTransaction">
             <End Role="Contact" EntitySet="Contacts" />
             <End Role="Transaction" EntitySet="Transactions" />
           </AssociationSet>
+          <EntitySet Name="Events" EntityType="MyDatabaseFileModel.Event" />
         </EntityContainer>
         <EntityType Name="Contact">
           <Key>
@@ -88,17 +88,6 @@
           <NavigationProperty Name="Contact" Relationship="MyDatabaseFileModel.ContactTransaction" FromRole="Transaction" ToRole="Contact" />
           <Property Name="ContactId" Type="Int32" Nullable="true" />
         </EntityType>
-        <EntityType Name="Event">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OccurrenceType" Type="String" Nullable="false" />
-          <Property Name="StartDate" Type="DateTime" Nullable="false" />
-          <Property Name="NumberOfAdditionalTimesRecurring" Type="Int32" Nullable="false" />
-          <Property Name="Description" Type="String" Nullable="false" />
-          <Property Name="EventType" Type="String" Nullable="false" />
-        </EntityType>
         <Association Name="ContactTransaction">
           <End Type="MyDatabaseFileModel.Contact" Role="Contact" Multiplicity="0..1" />
           <End Type="MyDatabaseFileModel.Transaction" Role="Transaction" Multiplicity="*" />
@@ -111,6 +100,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OccurrenceType" Type="String" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" />
+          <Property Name="AdditionalRecurring" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="EventType" Type="String" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -143,7 +143,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="OccurrenceType" ColumnName="OccurrenceType" />
           <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-          <ScalarProperty Name="NumberOfAdditionalTimesRecurring" ColumnName="NumberOfAdditionalTimesRecurring" />
+          <ScalarProperty Name="AdditionalRecurring" ColumnName="AdditionalRecurring" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="EventType" ColumnName="EventType" />
         </MappingFragment>

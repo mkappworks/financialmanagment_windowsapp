@@ -7,8 +7,8 @@
       <Diagram DiagramId="de6ebb6ba78c49a0a0e16ac40a81c5ad" Name="Diagram1" >
         <EntityTypeShape EntityType="MyDatabaseFileModel.Contact" Width="1.5" PointX="3.625" PointY="1.25" />
         <EntityTypeShape EntityType="MyDatabaseFileModel.Transaction" Width="1.5" PointX="6" PointY="1.25" />
-        <EntityTypeShape EntityType="MyDatabaseFileModel.Event" Width="1.5" PointX="8.75" PointY="1.125" />
         <AssociationConnector Association="MyDatabaseFileModel.ContactTransaction" />
+        <EntityTypeShape EntityType="MyDatabaseFileModel.Event" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

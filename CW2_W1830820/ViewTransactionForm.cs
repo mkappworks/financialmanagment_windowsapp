@@ -30,7 +30,7 @@ namespace CW2_W1830820
         {
             this.dataGridViewTransaction.Rows.Clear();
 
-            TransactionModel transactionModel = new TransactionModel();
+            Eventt transactionModel = new Eventt();
             var transactionTable = transactionModel.GetTransaction();
 
             ContactModel contactModel = new ContactModel();
@@ -91,7 +91,7 @@ namespace CW2_W1830820
 
                     int selectId = (int)dataGridViewTransaction.Rows[e.RowIndex].Cells[0].Value;
 
-                    TransactionModel transactionModel = new TransactionModel();
+                    Eventt transactionModel = new Eventt();
                     transactionModel.DeleteTransaction(selectId);
  
                     MessageBox.Show("Successfully Deleted");

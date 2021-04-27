@@ -7,41 +7,38 @@ using System.Threading.Tasks;
 
 namespace CW2_W1830820
 {
-    class EventModel
+    public class EventModel
     {
         public void SaveEvent(EventDetails eventDetails)
         {
-            /*
-            Event event = new Event();
+            Event eventData = new Event();
+            eventData.OccurrenceType = eventDetails.OccurrenceType;
+            eventData.StartDate = eventDetails.StartDate;
+            eventData.AdditionalRecurring = eventDetails.AdditionalRecurring;
+            eventData.Description = eventDetails.Description;
+            eventData.EventType = eventDetails.EventType;
 
-        event.EventOccurrence = eventDetails.EventOccurrence;
-        event.StartDate = eventDetails.StartDate;
-        event.NumberOfAdditionalTimesRecurring = eventDetails.NumberOfAdditionalTimesRecurring;
-        event.Description = eventDetails.Description;
-        event.EventType = eventDetails.EventType;
+            MyDatabaseFileEntities db = new MyDatabaseFileEntities();
 
-        MyDatabaseFileEntities db = new MyDatabaseFileEntities();
+            db.Events.Add(eventData);
+            db.SaveChanges();
 
-        db.Events.Add(event);
-        db.SaveChanges();
-            */
         }
 
         public void EditEvent(EventDetails eventDetails)
         {
-            /*
+
             MyDatabaseFileEntities db = new MyDatabaseFileEntities();
 
-            Event event = db.Events.Find(eventDetails.Id);
-        
-        event.EventOccurrence = eventDetails.EventOccurrence;
-        event.StartDate = eventDetails.StartDate;
-        event.NumberOfAdditionalTimesRecurring = eventDetails.NumberOfAdditionalTimesRecurring;
-        event.Description = eventDetails.Description;
-        event.EventType = eventDetails.EventType;
+            Event eventData = db.Events.Find(eventDetails.Id);
+            eventData.OccurrenceType = eventDetails.OccurrenceType;
+            eventData.StartDate = eventDetails.StartDate;
+            eventData.AdditionalRecurring = eventDetails.AdditionalRecurring;
+            eventData.Description = eventDetails.Description;
+            eventData.EventType = eventDetails.EventType;
 
-        db.SaveChanges();
-            */
+            db.SaveChanges();
+
         }
 
         public dynamic GetEvent()
@@ -53,15 +50,18 @@ namespace CW2_W1830820
 
         public void DeleteEvent(int id)
         {
-            /*
+
             MyDatabaseFileEntities db = new MyDatabaseFileEntities();
 
-            Event event = db.Events.Find(id);
-            db.Events.Remove(event);
+            Event eventData = db.Events.Find(id);
+            db.Events.Remove(eventData);
             db.SaveChanges();
-            */
+
         }
 
+
     }
+
+
 }
 

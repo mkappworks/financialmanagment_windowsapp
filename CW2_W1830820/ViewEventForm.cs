@@ -44,7 +44,7 @@ namespace CW2_W1830820
                 this.EventDetailsData.Id = selectId;
                 this.EventDetailsData.OccurrenceType = selectEventOccurrence;
                 this.EventDetailsData.StartDate = selectStartDate;
-                this.EventDetailsData.NumberOfAdditionalTimesRecurring = selectNumberOfAdditionalTimesRecurring;
+                this.EventDetailsData.AdditionalRecurring = selectNumberOfAdditionalTimesRecurring;
                 this.EventDetailsData.Description = selectDescription;
                 this.EventDetailsData.EventType = selectEventType;
 
@@ -84,7 +84,7 @@ namespace CW2_W1830820
 
             EventModel eventModel = new EventModel();
             var eventTable = eventModel.GetEvent();
-
+            /*
             foreach (var event in eventTable)
             {
 
@@ -98,7 +98,7 @@ namespace CW2_W1830820
                 EventType= event.EventType ,
              });
             }
-
+            */
 
 
 
