@@ -18,6 +18,7 @@ namespace CW2_W1830820
         public InputEventForm()
         {
             InitializeComponent();
+            this.comboBoxOccurrenceType.SelectedIndex = 0;
 
             this.radioBtnAppointment.Checked = true;
         }
@@ -27,7 +28,8 @@ namespace CW2_W1830820
             if (MessageBox.Show("Do you want to save the new event?", "PFMS | Save Event", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
 
-                this.EventDetailsData.OccurrenceType = this.comboBoxOccurrenceType.Text;
+                this.EventDetailsData = new EventDetails();
+                this.EventDetailsData.OccurrenceType = this.comboBoxOccurrenceType.SelectedItem.ToString();
                 this.EventDetailsData.StartDate = this.dateTimePickerStartDate.Value;
                 this.EventDetailsData.AdditionalRecurring = int.Parse(this.textBoxAdditionalRecurring.Text);
                 this.EventDetailsData.Description = this.textBoxDescription.Text;

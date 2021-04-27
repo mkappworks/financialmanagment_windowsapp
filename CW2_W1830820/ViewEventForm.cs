@@ -12,23 +12,46 @@ namespace CW2_W1830820
 {
     public partial class ViewEventForm : Form
     {
-        public EventDetails EventDetailsData { get; set; }
+        EventDetails EventDetailsData { get; set; }
 
         public ViewEventForm()
         {
             InitializeComponent();
         }
 
-
-
         private void ViewEventForm_Load(object sender, EventArgs e)
         {
             GetEventData();
         }
 
+
+
+        private void GetEventData()
+        {
+            this.dataGridViewEvent.Rows.Clear();
+
+            EventModel eventModel = new EventModel();
+            var eventTable = eventModel.GetEvent();
+
+            foreach (var eventRecord in eventTable)
+            {
+
+                this.eventDetailsBindingSource.Add(new EventDetails()
+                {
+
+                    Id = eventRecord.Id,
+                    OccurrenceType = eventRecord.OccurrenceType,
+                    StartDate = eventRecord.StartDate,
+                    AdditionalRecurring = eventRecord.AdditionalRecurring,
+                    Description = eventRecord.Description,
+                    EventType = eventRecord.EventType,
+                });
+            }
+        }
+
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
             if (dataGridViewEvent.Columns[e.ColumnIndex].Name == "Edit")
             {
 
@@ -69,7 +92,7 @@ namespace CW2_W1830820
 
                     EventModel eventModel = new EventModel();
                     eventModel.DeleteEvent(selectId);
-                    
+
                     MessageBox.Show("Successfully Deleted");
 
                     eventDetailsBindingSource.RemoveCurrent();
@@ -77,33 +100,8 @@ namespace CW2_W1830820
 
             }
         }
-
-        private void GetEventData()
-        {
-            this.dataGridViewEvent.Rows.Clear();
-
-            EventModel eventModel = new EventModel();
-            var eventTable = eventModel.GetEvent();
-            /*
-            foreach (var event in eventTable)
-            {
-
-            this.eventDetailsBindingSource.Add(new EventDetails()
-            {
-                Id = event.Id,
-                EventOccurrence= event.EventOccurrence ,
-                StartDate=  event.StartDate ,
-                NumberOfAdditionalTimesRecurring= event.NumberOfAdditionalTimesRecurring ,
-                Description =  event.Description ,
-                EventType= event.EventType ,
-             });
-            }
-            */
-
-
-
-}
-
-
     }
+
+
+
 }
